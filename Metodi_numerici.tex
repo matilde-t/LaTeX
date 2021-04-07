@@ -1,0 +1,136 @@
+\documentclass[openany]{book}
+
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{natbib}
+\usepackage{amsmath}
+\usepackage{latexsym}
+\usepackage{geometry}
+\usepackage{amsfonts}
+\usepackage{blindtext} % \blindtext \Blindtext \Blinddocument
+
+ \geometry{
+ a4paper,
+ left=25mm,
+ right=25mm,
+ %top=25mm,
+ bottom=30mm,
+}
+
+\title{\Huge \texttt{Metodi Numerici}}
+\date{}
+\author{\textsf{MT}}
+
+\renewcommand{\baselinestretch}{1.1}
+
+\setlength{\parindent}{0em}
+\setlength{\parskip}{0.2em}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\chapter{Sistemi lineari}
+
+\section{Fattorizzazioni di matrici}
+
+\subsection{Fattorizzazione di Gauss}
+
+Successione finita di trasformazioni della matrice dei coefficienti $A$ e del termine noto $b$, cioè moltiplicazione per un numero finito di opportune matrici
+
+Per scambiare le righe $i$ e $j$, si moltiplica A per la matrice identità con le righe $ i $  e $ j$  scambiate
+
+Per sostituire la riga $ i$ con la stessa più la $ j$ moltiplicata per $m_{ij}$, si usa $ I + m_{ij}e_ie_j^T$
+
+Combiniamo queste matrici in modo che il nuovo sistema assuma forma triangolare superiore $ Ux = \bar{b} $ ponendo $ GA = U $
+
+Costo: $ n^3/3$ operazioni aritmetiche 
+
+È inutile memorizzare G, ma è sufficiente memorizzare i moltiplicatori $ m_{ij}$ (nella parte inferiore della matrice $A$) e le permutazioni effettuate 
+
+Anche costruire $P_i$ è superfluo, basta avere un vettore di pivot e se al passo k-esimo viene effettuata la permutazione tra $k$ e $j$, basta porre $\text{pivot}(k)=j$ 
+\\
+
+Il metodo di Gauss può essere anche utilizzato per determinare: 
+
+\begin{itemize}
+	\item matrice di permutazione $P$
+	\item matrice triangolare inferiore con diagonale unitaria  $L$
+	\item matrice triangolare superiore $U$
+\end{itemize}
+
+tali che $PA=LU $
+
+N.B. tale decomposizione per una matrice qualsisi non singolare non è unica!
+
+\begin{itemize}
+	\item se $A$ è simmetrica e a diagonale dominante, il pivoting parziale non produce scambi
+	\item se $ A$ è simmetrica definita positiva, l'algoritmo è stabile anche senza pivoting
+\end{itemize}
+
+quindi otteniamo $A=LU$
+
+\subsection {Fattorizzazione di Choleski}
+
+Se $A$ è \textit{simmetrica} e \textit{definita positiva}, abbiamo $A=LU$, che possiamo riscrivere come $A=LDU_1$, dove $U_1$ si ottiene da $U$ dividendo ogni riga per il suo elemento diagonale che viene messo in $D$
+
+\begin{itemize}
+	\item Poiché $A$ è \textit{simmetrica}, $U_1 = L^T \Rightarrow A=LDL^T$ 
+	\item Poiché $A$ è \textit{definita positiva} ($\Leftrightarrow u_{ii}>0 \quad \forall i$), definiamo $D^{1/2}=\text {diag}(\sqrt {u_{ii}})\Rightarrow D=D^{1/2}D^{1/2}$
+
+\end{itemize}
+
+$\Rightarrow A=LD^{1/2}(D^{1/2})^T L^T\Rightarrow A=(LD^{1/2})(LD^{1/2})^T=L_1L_1^T$
+\\
+
+$L_1$ è una matrice triangolare inferiore con elementi diagonali positivi
+
+Costo: $n^3/6$ operazioni
+
+\subsection {Fattorizzazione QR}
+
+\subsubsection {Riflettori elementari}
+
+Dato un vettore $x=(x_1,x_2,...,x_n)^T$ è possibile determinare un \textit{riflettore elementare} $U_k \equiv U_k^{(n)}$ tale che $U_kx=(\bar{x}_1,...,\bar{x}_k,0,...,0)^T$
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
