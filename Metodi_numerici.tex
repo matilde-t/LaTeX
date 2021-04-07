@@ -95,6 +95,17 @@ Costo: $n^3/6$ operazioni
 \subsubsection {Riflettori elementari}
 
 Dato un vettore $x=(x_1,x_2,...,x_n)^T$ è possibile determinare un \textit{riflettore elementare} $U_k \equiv U_k^{(n)}$ tale che $U_kx=(\bar{x}_1,...,\bar{x}_k,0,...,0)^T$
+\\
+
+\quad {\large $U_k = I - \frac{1}{\pi_k}u_ku_k^T$ }
+\\
+
+con \quad $u_k=\left( \begin{array}{c} o \\ x_k + \sigma_k \\ x_{k+1} \\ ... \\ x_n \end{array} \right)$ \quad , \quad 
+ $o\in \mathbb{R}^{k-1}$ \quad , \quad
+$\sigma_k = \pm ||x_k'||_2$ \quad , \quad 
+$x_k'= \left( \begin{array}{c} x_k \\ x_{k+1} \\ ... \\ x_n \end{array} \right)$ \quad , \quad 
+$\pi_k=\frac{1}{2}||u_k||_2^2$ 
+
 
 \end{document}
 
