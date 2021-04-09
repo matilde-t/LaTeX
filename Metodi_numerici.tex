@@ -223,7 +223,20 @@ Scegliamo $D$ matrice diagonale, supponendo tutti i valori diagonali non nulli
 \\
 
 Il metodo di Jacobi consiste nel calcolare, nota un'approssimazione iniziale, le approssimazioni successive tramite la relazione
-\[ \displaystyle x_i^{(k+1)}=\frac{b_i-\displaystyle\sum_{\substack{j=1 \\ j\neq i}}a_{ij}x_j^{(k)}}{a_{ii}} \]
+\[ \displaystyle x_i^{(k+1)}=\frac{b_i-\displaystyle\sum^n_{\substack{j=1 \\ j\neq i}}a_{ij}x_j^{(k)}}{a_{ii}} \qquad i\in[n] \]
+
+\subsection{Metodo di Gauss-Seidel}
+
+Migliora il metodo di Jacobi introducendo le componenti già calcolate di $x^{(k+1)}$ nella sua stessa determinazione
+\[ \displaystyle x_i^{(k+1)}=\frac{b_i-\displaystyle\sum_{j=1}^{i-1}a_{ij}x_j^{(k+1)}-\displaystyle\sum^n_{j=i+1}a_{ij}x_j^{(k)}}{a_{ii}} \qquad i\in[n] \]
+
+In questo caso, abbiamo scelto la matrice $D$ triangolare inferiore
+
+I metodi di Jacobi e Gauss-Seidel sicuramente convergono quando A è una matrice a diagonale dominante, ma è soltanto una condizione sufficiente
+
+Se A è simmetrica e definita positiva, il metodo di Gauss-Seidel converge
+
+Le convergenze di questi due metodi sono indpendenti, ma quando entrambi convergono generalmente Gauss-Seidel è "il doppio più veloce"
 
 \end{document}
 
