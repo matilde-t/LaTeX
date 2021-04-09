@@ -27,6 +27,18 @@
 \setlength{\parindent}{0em}
 \setlength{\parskip}{0.2em}
 
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Metodi Numerici},
+    bookmarks=true,
+    %pdfpagemode=FullScreen,
+}
+
+
 \begin{document}
 
 \maketitle
@@ -39,19 +51,19 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Fattorizzazione di Gauss}
 
-Successione finita di trasformazioni della matrice dei coefficienti $A$ e del termine noto $b$, cioè moltiplicazione per un numero finito di opportune matrici.
+Successione finita di trasformazioni della matrice dei coefficienti $A$ e del termine noto $b$, cioè moltiplicazione per un numero finito di opportune matrici
 
-Per scambiare le righe $i$ e $j$, si moltiplica A per la matrice identità con le righe $ i $  e $ j$  scambiate.
+Per scambiare le righe $i$ e $j$, si moltiplica A per la matrice identità con le righe $ i $  e $ j$  scambiate
 
-Per sostituire la riga $ i$ con la stessa più la $ j$ moltiplicata per $m_{ij}$, si usa $ I + m_{ij}e_ie_j^T$.
+Per sostituire la riga $ i$ con la stessa più la $ j$ moltiplicata per $m_{ij}$, si usa $ I + m_{ij}e_ie_j^T$
 
-Combiniamo queste matrici in modo che il nuovo sistema assuma forma triangolare superiore $ Ux = \bar{b} $ ponendo $ GA = U $.
+Combiniamo queste matrici in modo che il nuovo sistema assuma forma triangolare superiore $ Ux = \bar{b} $ ponendo $ GA = U $
 
-Costo: $ n^3/3$ operazioni aritmetiche.
+Costo: $ n^3/3$ operazioni aritmetiche
 
-È inutile memorizzare G, ma è sufficiente memorizzare i moltiplicatori $ m_{ij}$ (nella parte inferiore della matrice $A$) e le permutazioni effettuate.
+È inutile memorizzare G, ma è sufficiente memorizzare i moltiplicatori $ m_{ij}$ (nella parte inferiore della matrice $A$) e le permutazioni effettuate
 
-Anche costruire $P_i$ è superfluo, basta avere un vettore di pivot e se al passo k-esimo viene effettuata la permutazione tra $k$ e $j$, basta porre $\text{pivot}(k)=j$.
+Anche costruire $P_i$ è superfluo, basta avere un vettore di pivot e se al passo k-esimo viene effettuata la permutazione tra $k$ e $j$, basta porre $\text{pivot}(k)=j$
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Fattorizzazione $LU$}
 
@@ -63,7 +75,7 @@ Il metodo di Gauss può essere anche utilizzato per determinare:
 	\item matrice triangolare superiore $U$
 \end{itemize}
 
-tali che $PA=LU $.
+tali che $PA=LU $
 
 N.B. tale decomposizione per una matrice qualsisi non singolare non è unica!
 
@@ -72,7 +84,7 @@ N.B. tale decomposizione per una matrice qualsisi non singolare non è unica!
 	\item se $ A$ è simmetrica definita positiva, l'algoritmo è stabile anche senza pivoting
 \end{itemize}
 
-quindi otteniamo $A=LU$.
+quindi otteniamo $A=LU$
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection {Fattorizzazione di Choleski}
 
@@ -125,6 +137,8 @@ Anche in questo caso $Q$ non viene definita esplicitamente ma si salvano solo $u
 
 Si può anche applicare alle matrici rettangolari
 
+\newpage
+
 \section{Applicazioni}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Soluzione del sistema lineare $Ax=b$}
@@ -143,7 +157,7 @@ $Q^TAx=Q^Tb \Rightarrow Rx=b'$ \qquad costo: $\frac{2n^3}{6}$
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Calcolo della matrice inversa}
 
-L'inversione di una matrice triangolare coinvolge $\frac{n^3}{6}$ operazioni aritmetiche, mentre quella di una matrice generica è $n^3$. La moltiplicazione tra due matrici richiede invece $n^2$ operazioni, così come la risoluzione di un sistema lineare.
+L'inversione di una matrice triangolare coinvolge $\frac{n^3}{6}$ operazioni aritmetiche, mentre quella di una matrice generica è $n^3$. La moltiplicazione tra due matrici richiede invece $n^3$ operazioni, mentre la risoluzione di un sistema lineare $n^2$
 
 N.B. l'inversa di una matrice sparsa è generalmente densa
 
@@ -154,11 +168,62 @@ N.B. l'inversa di una matrice sparsa è generalmente densa
 	\item $\boldsymbol{A=QR}\Rightarrow A^{-1}=(QR)^{-1}\Rightarrow A^{-1}=R^{-1}Q^{-1} \Rightarrow \boldsymbol{A^{-1}=R^{-1}Q^T}$ \quad $Q$ è ortogonale quindi l'inversa coincide con la trasposta
 \end{itemize}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Calcolare la soluzione del sistema $(A^TA)x=b$ senza costruire esplicitamente $B=A^TA$}
+\subsection{Calcolare la soluzione del sistema $(A^TA)x=b$ senza costruire esplicitamente $A^TA$}
 
 \subsubsection{Fattorizzazione $LU$}
 
-$A^TAx=b \Rightarrow \left\{ \begin{array}{ll} A^Ty=b & \Rightarrow y \\ Ax=y & \Rightarrow  \end{array} \right.$ 
+$A^TAx=b \Rightarrow \left\{ \begin{array}{ll} A^Ty=b & \Rightarrow y \\ Ax=y & \Rightarrow \boldsymbol{x} \end{array} \right.$ 
+
+$PA=LU \Rightarrow (PA)^T=(LU)^T \Rightarrow A^TP^T=U^TL^T \Rightarrow \boldsymbol{A^T=U^TL^TP}$ \quad N.B. $P$ è \textit{ortogonale}, ma non simmetrica
+
+$A^Ty=b \Rightarrow U^TL^TPy=b \Rightarrow \left\{ \begin{array}{ll} U^T\alpha = b & \Rightarrow \alpha \\ L^T\beta = \alpha & \Rightarrow \beta \end{array} \right.$ 
+
+$Py=\beta \Rightarrow y=P^T\beta$ e si sostituisce nel sistema iniziale 
+
+\subsubsection{Fattorizzazione $QR$}
+
+$A=QR \Rightarrow A^TA = R^TQ^TQR=R^TR$ \qquad $Q^TQ=I$ perché $Q$ è ortogonale
+\\
+		
+$Ax=b \Rightarrow R^TRx=b \Rightarrow \left\{ \begin{array}{ll} R^Ty=b & \Rightarrow y \\ Rx=y & \Rightarrow \boldsymbol{x} \end{array} \right.$
+
+\newpage
+
+\section{Metodi iterativi}
+
+In alcune situazioni i sistemi da risolvere sono sparsi e molto grandi e il metodo di Gauss rischia di rendere le matrici sempre meno sparse portando alla memorizzazione di un numero eccessivo di valori.
+I metodi iterativi hanno il vantaggio di non alterare mai la matrice iniziale.
+Partendo da una approssimazione iniziale della soluzione, e utilizzando sempre solo gli elementi non nulli della matrice, si crea una successione di soluzioni approssimate convergente alla soluzione esatta del sistema non singolare $Ax=b$
+\\
+
+È utile decomporre la matrice $A$ nella forma $A=D+C$ e riscrivere il sistema come $Dx=-Cx+b$. Partendo da un generico vettore $x^{(0)}$ costruiamo la successione $x^{(1)},x^{(2)},...$ innescando il processo iterativo $Dx^{(k+1)}=d^{(k)}$, con $d^{(k)}= -Cx^{(k)}+b$.
+
+Poiché il calcolo di $x^{(k+1)}$ richiede la risoluzione del sistema $Dx^{(k+1)}=d^{(k)}$, la scelta della matrice $D$ deve essere fatta in modo da rendere il sistema facilmente risolvibile (e computazionalmente poco oneroso)
+\\
+
+Per capire se il metodo converge riscriviamo il sistema nella forma $x^{(k+1)}=-D^{-1}Cx^{(k)}+D^{-1}b$ e ponendo $B=-D^{-1}C=I-D^{-1}A$, consideriamo l'errore assoluto $e^{(k+1)}=x-x^{(k+1)}=(Bx-D^{-1}b)-(Bx^{(k)}-D^{-1}b)=B(x-x^{(k)})=Be^{(k)}$
+
+Notiamo quindi che $e^{(k+1)}= Be^{(k)}=BB^{k}e^{(0)}=B^{k+1}e^{(0)}$, perciò perché il metodo tenda alla soluzione esatta vogliamo che $B^k$ tenda a zero
+
+\paragraph{Teorema}
+
+$\lim_{m\to\infty}B^m=O \Leftrightarrow \rho(B)<1$, dove $\rho(B)$ è il \textit{raggio spettrale} della matrice $B$, cioè $\max_i (|\lambda_i|)$, con $\lambda_i$ autovalori della matrice
+\\
+
+Perciò il processo iterativo è \textit{convergente} se e solo se $\boldsymbol{\rho(I-D^{-1}A)<1}$
+
+Inoltre, per ogni norma di matrice abbiamo che $\rho(B)\leq||B||$, quindi è sufficiente che sia $||I-D^{-1}A||<1$
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Metodo di Jacobi}
+
+N.B. se il sistema $Ax=b$ è non singolare, le sue equazioni si possono sempre riordinare in modo da avere gli elementi diagonali della matrice $A$ diversi da zero
+\\
+
+Scegliamo $D$ matrice diagonale, supponendo tutti i valori diagonali non nulli
+\\
+
+Il metodo di Jacobi consiste nel calcolare, nota un'approssimazione iniziale, le approssimazioni successive tramite la relazione
+\[ \displaystyle x_i^{(k+1)}=\frac{b_i-\displaystyle\sum_{\substack{j=1 \\ j\neq i}}a_{ij}x_j^{(k)}}{a_{ii}} \]
 
 \end{document}
 
