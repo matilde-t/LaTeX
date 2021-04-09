@@ -36,23 +36,24 @@
 \chapter{Sistemi lineari}
 
 \section{Fattorizzazioni di matrici}
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Fattorizzazione di Gauss}
 
-Successione finita di trasformazioni della matrice dei coefficienti $A$ e del termine noto $b$, cioè moltiplicazione per un numero finito di opportune matrici
+Successione finita di trasformazioni della matrice dei coefficienti $A$ e del termine noto $b$, cioè moltiplicazione per un numero finito di opportune matrici.
 
-Per scambiare le righe $i$ e $j$, si moltiplica A per la matrice identità con le righe $ i $  e $ j$  scambiate
+Per scambiare le righe $i$ e $j$, si moltiplica A per la matrice identità con le righe $ i $  e $ j$  scambiate.
 
-Per sostituire la riga $ i$ con la stessa più la $ j$ moltiplicata per $m_{ij}$, si usa $ I + m_{ij}e_ie_j^T$
+Per sostituire la riga $ i$ con la stessa più la $ j$ moltiplicata per $m_{ij}$, si usa $ I + m_{ij}e_ie_j^T$.
 
-Combiniamo queste matrici in modo che il nuovo sistema assuma forma triangolare superiore $ Ux = \bar{b} $ ponendo $ GA = U $
+Combiniamo queste matrici in modo che il nuovo sistema assuma forma triangolare superiore $ Ux = \bar{b} $ ponendo $ GA = U $.
 
-Costo: $ n^3/3$ operazioni aritmetiche 
+Costo: $ n^3/3$ operazioni aritmetiche.
 
-È inutile memorizzare G, ma è sufficiente memorizzare i moltiplicatori $ m_{ij}$ (nella parte inferiore della matrice $A$) e le permutazioni effettuate 
+È inutile memorizzare G, ma è sufficiente memorizzare i moltiplicatori $ m_{ij}$ (nella parte inferiore della matrice $A$) e le permutazioni effettuate.
 
-Anche costruire $P_i$ è superfluo, basta avere un vettore di pivot e se al passo k-esimo viene effettuata la permutazione tra $k$ e $j$, basta porre $\text{pivot}(k)=j$ 
-\\
+Anche costruire $P_i$ è superfluo, basta avere un vettore di pivot e se al passo k-esimo viene effettuata la permutazione tra $k$ e $j$, basta porre $\text{pivot}(k)=j$.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Fattorizzazione $LU$}
 
 Il metodo di Gauss può essere anche utilizzato per determinare: 
 
@@ -62,7 +63,7 @@ Il metodo di Gauss può essere anche utilizzato per determinare:
 	\item matrice triangolare superiore $U$
 \end{itemize}
 
-tali che $PA=LU $
+tali che $PA=LU $.
 
 N.B. tale decomposizione per una matrice qualsisi non singolare non è unica!
 
@@ -71,8 +72,8 @@ N.B. tale decomposizione per una matrice qualsisi non singolare non è unica!
 	\item se $ A$ è simmetrica definita positiva, l'algoritmo è stabile anche senza pivoting
 \end{itemize}
 
-quindi otteniamo $A=LU$
-
+quindi otteniamo $A=LU$.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection {Fattorizzazione di Choleski}
 
 Se $A$ è \textit{simmetrica} e \textit{definita positiva}, abbiamo $A=LU$, che possiamo riscrivere come $A=LDU_1$, dove $U_1$ si ottiene da $U$ dividendo ogni riga per il suo elemento diagonale che viene messo in $D$
@@ -89,8 +90,8 @@ $\Rightarrow A=LD^{1/2}(D^{1/2})^T L^T\Rightarrow A=(LD^{1/2})(LD^{1/2})^T=L_1L_
 $L_1$ è una matrice triangolare inferiore con elementi diagonali positivi
 
 Costo: $n^3/6$ operazioni
-
-\subsection {Fattorizzazione QR}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection {Fattorizzazione $QR$}
 
 \subsubsection {Riflettori elementari}
 
@@ -106,6 +107,58 @@ $\sigma_k = \pm ||x_k'||_2$ \quad , \quad
 $x_k'= \left( \begin{array}{c} x_k \\ x_{k+1} \\ ... \\ x_n \end{array} \right)$ \quad , \quad 
 $\pi_k=\frac{1}{2}||u_k||_2^2$ 
 
+Per $\sigma_k$, scegliere segno concorde per non avere cancellazione numerica
+
+\subsubsection{QR}
+
+
+Con l'utilizzo dei riflettori possiamo triangolarizzare la matrice, da cui $Q^TA=R \Rightarrow A=QR$, dove:
+
+\begin{itemize}
+	\item essendo le $U_k$ ortogonali, $Q$ è ortogonale
+	\item $R$ è triangolare superiore
+\end{itemize}
+
+Fattorizzazione perfettamente stabile, ma onerosa, perciò si usa quando Gauss fallisce ($\frac{2n^3}{3}$ vs $\frac{n^3}{3}$)
+
+Anche in questo caso $Q$ non viene definita esplicitamente ma si salvano solo $u_k$ e $\pi_k$
+
+Si può anche applicare alle matrici rettangolari
+
+\section{Applicazioni}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Soluzione del sistema lineare $Ax=b$}
+
+$PAx=Pb \Rightarrow LUx=b' \Rightarrow \left\{ \begin{array}{ll} Ly=b' & \Rightarrow y \\ Ux = y & \Rightarrow \boldsymbol{x} \end{array}\right.$ \qquad costo: $\frac{n^3}{6}$
+\\
+
+Se invece $A$ è \textit{simmetrica} e \textit{definita positiva}
+
+$Ax=b \Rightarrow LL^Tx=b \Rightarrow \left\{ \begin{array}{ll} Ly=b' & \Rightarrow y \\ L^Tx = y & \Rightarrow \boldsymbol{x} \end{array}\right.$ \qquad costo: $\frac{n^3}{6}$
+\\
+
+Utilizzando la \textit{fattorizzazione $QR$}
+
+$Q^TAx=Q^Tb \Rightarrow Rx=b'$ \qquad costo: $\frac{2n^3}{6}$
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Calcolo della matrice inversa}
+
+L'inversione di una matrice triangolare coinvolge $\frac{n^3}{6}$ operazioni aritmetiche, mentre quella di una matrice generica è $n^3$. La moltiplicazione tra due matrici richiede invece $n^2$ operazioni, così come la risoluzione di un sistema lineare.
+
+N.B. l'inversa di una matrice sparsa è generalmente densa
+
+\begin{itemize}
+	\item $\boldsymbol{GA=U}\Rightarrow (GA)^{-1}=U^{-1}\Rightarrow A^{-1}G^{-1}=U^{-1}\Rightarrow \boldsymbol{A^{-1}=U^{-1}G}$
+	\item $\boldsymbol{PA=LU} \Rightarrow (PA)^{-1}=(LU)^{-1}\Rightarrow A^{-1}P^{-1}=U^{-1}L^{-1}\Rightarrow \boldsymbol{A^{-1}=U^{-1}L^{-1}P}$
+	\item $\boldsymbol{A=LL^T}\Rightarrow A^{-1}(LL^T)^{-1}\Rightarrow A^{-1}=(L^T)^{-1}L^{-1} \Rightarrow \boldsymbol{A^{-1}=(L^{-1})^TL^{-1}}$ \quad L'inversa della trasposta è la trasposta dell'inversa 
+	\item $\boldsymbol{A=QR}\Rightarrow A^{-1}=(QR)^{-1}\Rightarrow A^{-1}=R^{-1}Q^{-1} \Rightarrow \boldsymbol{A^{-1}=R^{-1}Q^T}$ \quad $Q$ è ortogonale quindi l'inversa coincide con la trasposta
+\end{itemize}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Calcolare la soluzione del sistema $(A^TA)x=b$ senza costruire esplicitamente $B=A^TA$}
+
+\subsubsection{Fattorizzazione $LU$}
+
+$A^TAx=b \Rightarrow \left\{ \begin{array}{ll} A^Ty=b & \Rightarrow y \\ Ax=y & \Rightarrow  \end{array} \right.$ 
 
 \end{document}
 
