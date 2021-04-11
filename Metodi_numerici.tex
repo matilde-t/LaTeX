@@ -188,7 +188,7 @@ $A=QR \Rightarrow A^TA = R^TQ^TQR=R^TR$ \qquad $Q^TQ=I$ perché $Q$ è ortogonal
 $Ax=b \Rightarrow R^TRx=b \Rightarrow \left\{ \begin{array}{ll} R^Ty=b & \Rightarrow y \\ Rx=y & \Rightarrow \boldsymbol{x} \end{array} \right.$
 
 \newpage
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Metodi iterativi}
 
 In alcune situazioni i sistemi da risolvere sono sparsi e molto grandi e il metodo di Gauss rischia di rendere le matrici sempre meno sparse portando alla memorizzazione di un numero eccessivo di valori.
@@ -213,6 +213,8 @@ $\lim_{m\to\infty}B^m=O \Leftrightarrow \rho(B)<1$, dove $\rho(B)$ è il \textit
 Perciò il processo iterativo è \textit{convergente} se e solo se $\boldsymbol{\rho(I-D^{-1}A)<1}$
 
 Inoltre, per ogni norma di matrice abbiamo che $\rho(B)\leq||B||$, quindi è sufficiente che sia $||I-D^{-1}A||<1$
+
+N.B. $||B||_\infty<1 \Leftrightarrow A$ è a diagonale dominante per righe
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Metodo di Jacobi}
 
@@ -224,7 +226,7 @@ Scegliamo $D$ matrice diagonale, supponendo tutti i valori diagonali non nulli
 
 Il metodo di Jacobi consiste nel calcolare, nota un'approssimazione iniziale, le approssimazioni successive tramite la relazione
 \[ \displaystyle x_i^{(k+1)}=\frac{b_i-\displaystyle\sum^n_{\substack{j=1 \\ j\neq i}}a_{ij}x_j^{(k)}}{a_{ii}} \qquad i\in[n] \]
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Metodo di Gauss-Seidel}
 
 Migliora il metodo di Jacobi introducendo le componenti già calcolate di $x^{(k+1)}$ nella sua stessa determinazione
@@ -237,8 +239,55 @@ I metodi di Jacobi e Gauss-Seidel sicuramente convergono quando A è una matrice
 Se A è simmetrica e definita positiva, il metodo di Gauss-Seidel converge
 
 Le convergenze di questi due metodi sono indpendenti, ma quando entrambi convergono generalmente Gauss-Seidel è "il doppio più veloce"
+%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Metodo SOR}
 
+Consideriamo dal metodo di Gauss-Seidel la differenza tra due approssimazioni della soluzione: 
 
+$r_i^{(k)}=x_i^{(k+1)}-x_i^{(k)}=\frac{1}{a_{ii}}\left( b_i-\sum_{j=1}^{i-1}a_{ij}x_j^{(k+1)} - \sum_{\boldsymbol{j=i}}^na_{ij}x_j^{(k)} \right) \qquad i\in[n]$
+
+Dove $r_i^{(k)}$ rappresenta la correzione da apportare a $x_i^{(k)}$ per ottenere la nuova approssimazione
+
+Immaginiamo di introdurre un parametro $\omega$ tale da accelerare il più possibile la convergenza della successione $\{x^{(k)}\}$:
+
+$x_i^{(k+1)}=x_i^{(k)}+\omega r_i^{(k)}$
+
+In questo caso, il sistema è come se fosse scritto nella forma $\omega Ax=\omega b$ con decomposizione $\omega A = D_\omega + C_\omega$
+
+Si nota che quando $\omega=1$ il metodo coincide con quello di Gauss-Seidel
+
+Il calcolo del valore ottimale di $\omega$ non è in generale semplice, ma la convergenza è assicurata per $0<\omega<2$ se $A$ è simmetrica definita positiva
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Metodo del gradiente coniugato}
+
+Osserviamo che la soluzione del sistema $Ax=b$ (con $A$ simmetrica e definita positiva) è equivalente alla minimizzazione del funzionale $\Phi(x)=\frac{1}{2}x^TAx-x^Tb$, infatti $\nabla\Phi(x)=Ax-b$ e il minimo è unico e coincidente con $x=A^{-1}b$
+\\
+
+Per minimizzare, seguiamo localmente la direzione di massima pendenza $-\nabla\Phi$
+
+Se $-\nabla\Phi(x_k)=o$, allora $x_k$ è la soluzione, altrimenti, definito $r_k=b-Ax_k=-\nabla\Phi(x_k)$, esiste sicuramente $\alpha>0$ tale che $\Phi(x_k+\alpha r_k)<\Phi(x_k)$ (in quanto $x_k$ non è il minimo)
+
+Sostituendo otteniamo $x_{k+1}=x_k+\alpha r_k=x_k-\alpha\nabla\Phi(x_k)$
+
+Scegliamo $\alpha$ in modo che $\Phi(x_{(k+1)}$ sia minimo e sappiamo che il valore ottimo di $\alpha$ è $\alpha_k =\frac{r_k^Tr_k}{r_k^TAr_k}>0$ e si dimostra che $r^T_{(k+1)}r_k=0$, cioè i due residui sono ortogonali
+\\
+
+La convergenza del metodo è assicurata, ma la sua velocità diminuisce all'aumentare del \textit{numero di condizionamento spettrale} $K_2(A)=\frac{\lambda_1(A)}{\lambda_n(A)}$, dove $\lambda_1\geq\lambda_2\geq...\geq\lambda_n$ sono gli autovalori di $A$ (reali e positivi dato che $A$ è per ipotesi simmetrica e definita positiva)
+
+Inoltre, si dimostra che in aritmetica con precisione infinita il metodo arriva alla soluzione esatta in al più $n$ iterazioni. Tuttavia, con una precisione finita di calcolo i valori nei vari step saranno approssimati e perciò dopo $n$ passaggi si giungerà soltanto a una approssimazione della soluzione, non necessariamente con la precisione di macchina. Oltre a ciò, anche se la precisione di macchina venisse raggiunta, quando la dimensione di $A$ è molto grande tale numero sarebbe comunque eccessivo
+
+Il metodo converge rapidamente quando $A=I+B$ con $\text{rank}(B)\ll n$ oppure quando $K_2(A)\approx 1$. Se non ci si trova in queste condizioni, esistono tecniche di \textit{precondizionamento} che consentono di trasformare un sistema simmetrico definito positivo in uno equivalente dalla cui soluzione è possibile dedurre quella del sistema originale 
+\\
+
+La struttura di base del precondizionamento è, presa una matrice simmetrica non singolare $C$: $C^{-1}AC^{-1}Cx=C^{-1}b$\quad e ponendo $\overline{A}=C^{-1}AC^{-1} \quad \overline{x}=Cx \quad \overline{b}=C^{-1}b$\quad otteniamo $\overline{A}\overline{x}=\overline{b}$
+
+Si nota che $\overline{A}$ è ancora simmetrica definita positiva, quindi si sceglie $C$ in modo da rendere $K_2(\overline{A})\approx 1$
+
+È possibile scrivere l'algoritmo in modo da ottenere direttamente $x$ senza dover mai calcolare o usare $C^{-1}$. Si osserva che l'algoritmo dipende soltanto da $M=C^2$, simmetrica e definita positiva, che viene chiamata \textit{precondizionatore}. $C$ deve essere tale da rendere $Mz=r$ di facile soluzione 
+\\
+
+Uno dei precondizionatori più importanti discende dalla \textit{fattorizzazione incompleta di Choleski} della matrice $A$. Ha la forma $M=\overline{L}_1\overline{L}_1^T$, dove
+$\left\{ \begin{array}{ll}(\overline{L}_1)_{ij}=(L_1)_{ij} & \text{se } (A)_{ij}\neq 0 \\ (\overline{L}_1)_{ij}=0 & \text{se } (A)_{ij}=0\end{array} \right.$ con $L_1$ matrice triangolare inferiore della decomposizione di Choleski classica
 
 \end{document}
 
