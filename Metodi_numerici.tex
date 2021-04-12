@@ -8,7 +8,7 @@
 \usepackage{latexsym}
 \usepackage{geometry}
 \usepackage{amsfonts}
-%\usepackage{blindtext} % \blindtext \Blindtext \Blinddocument
+\usepackage{blindtext} % \blindtext \Blindtext \Blinddocument
 
  \geometry{
  a4paper,
@@ -51,19 +51,23 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Fattorizzazione di Gauss}
 
-Successione finita di trasformazioni della matrice dei coefficienti $A$ e del termine noto $b$, cioè moltiplicazione per un numero finito di opportune matrici
+Successione finita di trasformazioni della matrice dei coefficienti $A$ e del termine noto $b$, cioè 
+moltiplicazione per un numero finito di opportune matrici
 
 Per scambiare le righe $i$ e $j$, si moltiplica A per la matrice identità con le righe $ i $  e $ j$  scambiate
 
 Per sostituire la riga $ i$ con la stessa più la $ j$ moltiplicata per $m_{ij}$, si usa $ I + m_{ij}e_ie_j^T$
 
-Combiniamo queste matrici in modo che il nuovo sistema assuma forma triangolare superiore $ Ux = \bar{b} $ ponendo $ GA = U $
+Combiniamo queste matrici in modo che il nuovo sistema assuma forma triangolare superiore $ Ux = \bar{b} $ 
+ponendo $ GA = U $
 
 Costo: $ n^3/3$ operazioni aritmetiche
 
-È inutile memorizzare G, ma è sufficiente memorizzare i moltiplicatori $ m_{ij}$ (nella parte inferiore della matrice $A$) e le permutazioni effettuate
+È inutile memorizzare G, ma è sufficiente memorizzare i moltiplicatori $ m_{ij}$ (nella parte inferiore della 
+matrice $A$) e le permutazioni effettuate
 
-Anche costruire $P_i$ è superfluo, basta avere un vettore di pivot e se al passo k-esimo viene effettuata la permutazione tra $k$ e $j$, basta porre $\text{pivot}(k)=j$
+Anche costruire $P_i$ è superfluo, basta avere un vettore di pivot e se al passo k-esimo viene effettuata la 
+permutazione tra $k$ e $j$, basta porre $\text{pivot}(k)=j$
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Fattorizzazione $LU$}
 
@@ -88,11 +92,13 @@ quindi otteniamo $A=LU$
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection {Fattorizzazione di Choleski}
 
-Se $A$ è \textit{simmetrica} e \textit{definita positiva}, abbiamo $A=LU$, che possiamo riscrivere come $A=LDU_1$, dove $U_1$ si ottiene da $U$ dividendo ogni riga per il suo elemento diagonale che viene messo in $D$
+Se $A$ è \textit{simmetrica} e \textit{definita positiva}, abbiamo $A=LU$, che possiamo riscrivere come 
+$A=LDU_1$, dove $U_1$ si ottiene da $U$ dividendo ogni riga per il suo elemento diagonale che viene messo in $D$
 
 \begin{itemize}
 	\item Poiché $A$ è \textit{simmetrica}, $U_1 = L^T \Rightarrow A=LDL^T$ 
-	\item Poiché $A$ è \textit{definita positiva} ($\Leftrightarrow u_{ii}>0 \quad \forall i$), definiamo $D^{1/2}=\text {diag}(\sqrt {u_{ii}})\Rightarrow D=D^{1/2}D^{1/2}$
+	\item Poiché $A$ è \textit{definita positiva} ($\Leftrightarrow u_{ii}>0 \quad \forall i$), definiamo 
+	$D^{1/2}=\text {diag}(\sqrt {u_{ii}})\Rightarrow D=D^{1/2}D^{1/2}$
 
 \end{itemize}
 
@@ -107,13 +113,15 @@ Costo: $n^3/6$ operazioni
 
 \subsubsection {Riflettori elementari}
 
-Dato un vettore $x=(x_1,x_2,...,x_n)^T$ è possibile determinare un \textit{riflettore elementare} $U_k \equiv U_k^{(n)}$ tale che $U_kx=(\bar{x}_1,...,\bar{x}_k,0,...,0)^T$
+Dato un vettore $x=(x_1,x_2,...,x_n)^T$ è possibile determinare un \textit{riflettore elementare} $U_k \equiv 
+U_k^{(n)}$ tale che $U_kx=(\bar{x}_1,...,\bar{x}_k,0,...,0)^T$
 \\
 
 \quad {\large $U_k = I - \frac{1}{\pi_k}u_ku_k^T$ }
 \\
 
-con \quad $u_k=\left( \begin{array}{c} o \\ x_k + \sigma_k \\ x_{k+1} \\ ... \\ x_n \end{array} \right)$ \quad , \quad 
+con \quad $u_k=\left( \begin{array}{c} o \\ x_k + \sigma_k \\ x_{k+1} \\ ... \\ x_n \end{array} \right)$ 
+\quad , \quad 
  $o\in \mathbb{R}^{k-1}$ \quad , \quad
 $\sigma_k = \pm ||x_k'||_2$ \quad , \quad 
 $x_k'= \left( \begin{array}{c} x_k \\ x_{k+1} \\ ... \\ x_n \end{array} \right)$ \quad , \quad 
@@ -131,7 +139,8 @@ Con l'utilizzo dei riflettori possiamo triangolarizzare la matrice, da cui $Q^TA
 	\item $R$ è triangolare superiore
 \end{itemize}
 
-Fattorizzazione perfettamente stabile, ma onerosa, perciò si usa quando Gauss fallisce ($\frac{2n^3}{3}$ vs $\frac{n^3}{3}$)
+Fattorizzazione perfettamente stabile, ma onerosa, perciò si usa quando Gauss fallisce ($\frac{2n^3}{3}$ vs 
+$\frac{n^3}{3}$)
 
 Anche in questo caso $Q$ non viene definita esplicitamente ma si salvano solo $u_k$ e $\pi_k$
 
@@ -143,12 +152,14 @@ Si può anche applicare alle matrici rettangolari
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Soluzione del sistema lineare $Ax=b$}
 
-$PAx=Pb \Rightarrow LUx=b' \Rightarrow \left\{ \begin{array}{ll} Ly=b' & \Rightarrow y \\ Ux = y & \Rightarrow \boldsymbol{x} \end{array}\right.$ \qquad costo: $\frac{n^3}{6}$
+$PAx=Pb \Rightarrow LUx=b' \Rightarrow \left\{ \begin{array}{ll} Ly=b' & \Rightarrow y \\ Ux = y & \Rightarrow 
+\boldsymbol{x} \end{array}\right.$ \qquad costo: $\frac{n^3}{6}$
 \\
 
 Se invece $A$ è \textit{simmetrica} e \textit{definita positiva}
 
-$Ax=b \Rightarrow LL^Tx=b \Rightarrow \left\{ \begin{array}{ll} Ly=b' & \Rightarrow y \\ L^Tx = y & \Rightarrow \boldsymbol{x} \end{array}\right.$ \qquad costo: $\frac{n^3}{6}$
+$Ax=b \Rightarrow LL^Tx=b \Rightarrow \left\{ \begin{array}{ll} Ly=b' & \Rightarrow y \\ L^Tx = y & \Rightarrow
+ \boldsymbol{x} \end{array}\right.$ \qquad costo: $\frac{n^3}{6}$
 \\
 
 Utilizzando la \textit{fattorizzazione $QR$}
@@ -157,26 +168,35 @@ $Q^TAx=Q^Tb \Rightarrow Rx=b'$ \qquad costo: $\frac{2n^3}{6}$
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Calcolo della matrice inversa}
 
-L'inversione di una matrice triangolare coinvolge $\frac{n^3}{6}$ operazioni aritmetiche, mentre quella di una matrice generica è $n^3$. La moltiplicazione tra due matrici richiede invece $n^3$ operazioni, mentre la risoluzione di un sistema lineare $n^2$
+L'inversione di una matrice triangolare coinvolge $\frac{n^3}{6}$ operazioni aritmetiche, mentre quella di una 
+matrice generica è $n^3$. La moltiplicazione tra due matrici richiede invece $n^3$ operazioni, mentre la 
+risoluzione di un sistema lineare $n^2$
 
 N.B. l'inversa di una matrice sparsa è generalmente densa
 
 \begin{itemize}
-	\item $\boldsymbol{GA=U}\Rightarrow (GA)^{-1}=U^{-1}\Rightarrow A^{-1}G^{-1}=U^{-1}\Rightarrow \boldsymbol{A^{-1}=U^{-1}G}$
-	\item $\boldsymbol{PA=LU} \Rightarrow (PA)^{-1}=(LU)^{-1}\Rightarrow A^{-1}P^{-1}=U^{-1}L^{-1}\Rightarrow \boldsymbol{A^{-1}=U^{-1}L^{-1}P}$
-	\item $\boldsymbol{A=LL^T}\Rightarrow A^{-1}(LL^T)^{-1}\Rightarrow A^{-1}=(L^T)^{-1}L^{-1} \Rightarrow \boldsymbol{A^{-1}=(L^{-1})^TL^{-1}}$ \quad L'inversa della trasposta è la trasposta dell'inversa 
-	\item $\boldsymbol{A=QR}\Rightarrow A^{-1}=(QR)^{-1}\Rightarrow A^{-1}=R^{-1}Q^{-1} \Rightarrow \boldsymbol{A^{-1}=R^{-1}Q^T}$ \quad $Q$ è ortogonale quindi l'inversa coincide con la trasposta
+	\item $\boldsymbol{GA=U}\Rightarrow (GA)^{-1}=U^{-1}\Rightarrow A^{-1}G^{-1}=U^{-1}\Rightarrow 
+	\boldsymbol{A^{-1}=U^{-1}G}$
+	\item $\boldsymbol{PA=LU} \Rightarrow (PA)^{-1}=(LU)^{-1}\Rightarrow A^{-1}P^{-1}=U^{-1}L^{-1}\Rightarrow 
+	\boldsymbol{A^{-1}=U^{-1}L^{-1}P}$
+	\item $\boldsymbol{A=LL^T}\Rightarrow A^{-1}(LL^T)^{-1}\Rightarrow A^{-1}=(L^T)^{-1}L^{-1} \Rightarrow 
+	\boldsymbol{A^{-1}=(L^{-1})^TL^{-1}}$ \quad L'inversa della trasposta è la trasposta dell'inversa 
+	\item $\boldsymbol{A=QR}\Rightarrow A^{-1}=(QR)^{-1}\Rightarrow A^{-1}=R^{-1}Q^{-1} \Rightarrow 
+	\boldsymbol{A^{-1}=R^{-1}Q^T}$ \quad $Q$ è ortogonale quindi l'inversa coincide con la trasposta
 \end{itemize}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Calcolare la soluzione del sistema $(A^TA)x=b$ senza costruire esplicitamente $A^TA$}
 
 \subsubsection{Fattorizzazione $LU$}
 
-$A^TAx=b \Rightarrow \left\{ \begin{array}{ll} A^Ty=b & \Rightarrow y \\ Ax=y & \Rightarrow \boldsymbol{x} \end{array} \right.$ 
+$A^TAx=b \Rightarrow \left\{ \begin{array}{ll} A^Ty=b & \Rightarrow y \\ Ax=y & \Rightarrow \boldsymbol{x} 
+\end{array} \right.$ 
 
-$PA=LU \Rightarrow (PA)^T=(LU)^T \Rightarrow A^TP^T=U^TL^T \Rightarrow \boldsymbol{A^T=U^TL^TP}$ \quad N.B. $P$ è \textit{ortogonale}, ma non simmetrica
+$PA=LU \Rightarrow (PA)^T=(LU)^T \Rightarrow A^TP^T=U^TL^T \Rightarrow \boldsymbol{A^T=U^TL^TP}$ \quad N.B. 
+$P$ è \textit{ortogonale}, ma non simmetrica
 
-$A^Ty=b \Rightarrow U^TL^TPy=b \Rightarrow \left\{ \begin{array}{ll} U^T\alpha = b & \Rightarrow \alpha \\ L^T\beta = \alpha & \Rightarrow \beta \end{array} \right.$ 
+$A^Ty=b \Rightarrow U^TL^TPy=b \Rightarrow \left\{ \begin{array}{ll} U^T\alpha = b & \Rightarrow \alpha \\ 
+L^T\beta = \alpha & \Rightarrow \beta \end{array} \right.$ 
 
 $Py=\beta \Rightarrow y=P^T\beta$ e si sostituisce nel sistema iniziale 
 
@@ -185,111 +205,158 @@ $Py=\beta \Rightarrow y=P^T\beta$ e si sostituisce nel sistema iniziale
 $A=QR \Rightarrow A^TA = R^TQ^TQR=R^TR$ \qquad $Q^TQ=I$ perché $Q$ è ortogonale
 \\
 		
-$Ax=b \Rightarrow R^TRx=b \Rightarrow \left\{ \begin{array}{ll} R^Ty=b & \Rightarrow y \\ Rx=y & \Rightarrow \boldsymbol{x} \end{array} \right.$
+$Ax=b \Rightarrow R^TRx=b \Rightarrow \left\{ \begin{array}{ll} R^Ty=b & \Rightarrow y \\ Rx=y & \Rightarrow 
+\boldsymbol{x} \end{array} \right.$
 
 \newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Metodi iterativi}
 
-In alcune situazioni i sistemi da risolvere sono sparsi e molto grandi e il metodo di Gauss rischia di rendere le matrici sempre meno sparse portando alla memorizzazione di un numero eccessivo di valori.
+In alcune situazioni i sistemi da risolvere sono sparsi e molto grandi e il metodo di Gauss rischia di rendere 
+le matrici sempre meno sparse portando alla memorizzazione di un numero eccessivo di valori.
 I metodi iterativi hanno il vantaggio di non alterare mai la matrice iniziale.
-Partendo da una approssimazione iniziale della soluzione, e utilizzando sempre solo gli elementi non nulli della matrice, si crea una successione di soluzioni approssimate convergente alla soluzione esatta del sistema non singolare $Ax=b$
+Partendo da una approssimazione iniziale della soluzione, e utilizzando sempre solo gli elementi non nulli 
+della matrice, si crea una successione di soluzioni approssimate convergente alla soluzione esatta del sistema 
+non singolare $Ax=b$
 \\
 
-È utile decomporre la matrice $A$ nella forma $A=D+C$ e riscrivere il sistema come $Dx=-Cx+b$. Partendo da un generico vettore $x^{(0)}$ costruiamo la successione $x^{(1)},x^{(2)},...$ innescando il processo iterativo $Dx^{(k+1)}=d^{(k)}$, con $d^{(k)}= -Cx^{(k)}+b$.
+È utile decomporre la matrice $A$ nella forma $A=D+C$ e riscrivere il sistema come $Dx=-Cx+b$. Partendo da un 
+generico vettore $x^{(0)}$ costruiamo la successione $x^{(1)},x^{(2)},...$ innescando il processo iterativo 
+$Dx^{(k+1)}=d^{(k)}$, con $d^{(k)}= -Cx^{(k)}+b$.
 
-Poiché il calcolo di $x^{(k+1)}$ richiede la risoluzione del sistema $Dx^{(k+1)}=d^{(k)}$, la scelta della matrice $D$ deve essere fatta in modo da rendere il sistema facilmente risolvibile (e computazionalmente poco oneroso)
+Poiché il calcolo di $x^{(k+1)}$ richiede la risoluzione del sistema $Dx^{(k+1)}=d^{(k)}$, la scelta della 
+matrice $D$ deve essere fatta in modo da rendere il sistema facilmente risolvibile (e computazionalmente poco 
+oneroso)
 \\
 
-Per capire se il metodo converge riscriviamo il sistema nella forma $x^{(k+1)}=-D^{-1}Cx^{(k)}+D^{-1}b$ e ponendo $B=-D^{-1}C=I-D^{-1}A$, consideriamo l'errore assoluto $e^{(k+1)}=x-x^{(k+1)}=(Bx-D^{-1}b)-(Bx^{(k)}-D^{-1}b)=B(x-x^{(k)})=Be^{(k)}$
+Per capire se il metodo converge riscriviamo il sistema nella forma $x^{(k+1)}=-D^{-1}Cx^{(k)}+D^{-1}b$ e 
+ponendo $B=-D^{-1}C=I-D^{-1}A$, consideriamo l'errore assoluto 
+$e^{(k+1)}=x-x^{(k+1)}=(Bx-D^{-1}b)-(Bx^{(k)}-D^{-1}b)=B(x-x^{(k)})=Be^{(k)}$
 
-Notiamo quindi che $e^{(k+1)}= Be^{(k)}=BB^{k}e^{(0)}=B^{k+1}e^{(0)}$, perciò perché il metodo tenda alla soluzione esatta vogliamo che $B^k$ tenda a zero
+Notiamo quindi che $e^{(k+1)}= Be^{(k)}=BB^{k}e^{(0)}=B^{k+1}e^{(0)}$, perciò perché il metodo tenda alla 
+soluzione esatta vogliamo che $B^k$ tenda a zero
 
 \paragraph{Teorema}
 
-$\lim_{m\to\infty}B^m=O \Leftrightarrow \rho(B)<1$, dove $\rho(B)$ è il \textit{raggio spettrale} della matrice $B$, cioè $\max_i (|\lambda_i|)$, con $\lambda_i$ autovalori della matrice
+$\lim_{m\to\infty}B^m=O \Leftrightarrow \rho(B)<1$, dove $\rho(B)$ è il \textit{raggio spettrale} della 
+matrice $B$, cioè $\max_i (|\lambda_i|)$, con $\lambda_i$ autovalori della matrice
 \\
 
 Perciò il processo iterativo è \textit{convergente} se e solo se $\boldsymbol{\rho(I-D^{-1}A)<1}$
 
-Inoltre, per ogni norma di matrice abbiamo che $\rho(B)\leq||B||$, quindi è sufficiente che sia $||I-D^{-1}A||<1$
+Inoltre, per ogni norma di matrice abbiamo che $\rho(B)\leq||B||$, quindi è sufficiente che sia 
+$||I-D^{-1}A||<1$
 
 N.B. $||B||_\infty<1 \Leftrightarrow A$ è a diagonale dominante per righe
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Metodo di Jacobi}
 
-N.B. se il sistema $Ax=b$ è non singolare, le sue equazioni si possono sempre riordinare in modo da avere gli elementi diagonali della matrice $A$ diversi da zero
+N.B. se il sistema $Ax=b$ è non singolare, le sue equazioni si possono sempre riordinare in modo da avere gli 
+elementi diagonali della matrice $A$ diversi da zero
 \\
 
 Scegliamo $D$ matrice diagonale, supponendo tutti i valori diagonali non nulli
 \\
 
-Il metodo di Jacobi consiste nel calcolare, nota un'approssimazione iniziale, le approssimazioni successive tramite la relazione
-\[ \displaystyle x_i^{(k+1)}=\frac{b_i-\displaystyle\sum^n_{\substack{j=1 \\ j\neq i}}a_{ij}x_j^{(k)}}{a_{ii}} \qquad i\in[n] \]
+Il metodo di Jacobi consiste nel calcolare, nota un'approssimazione iniziale, le approssimazioni successive 
+tramite la relazione
+\[ \displaystyle x_i^{(k+1)}=\frac{b_i-\displaystyle\sum^n_{\substack{j=1 \\ j\neq i}}a_{ij}x_j^{(k)}}{a_{ii}} 
+\qquad i\in[n] \]
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Metodo di Gauss-Seidel}
 
-Migliora il metodo di Jacobi introducendo le componenti già calcolate di $x^{(k+1)}$ nella sua stessa determinazione
-\[ \displaystyle x_i^{(k+1)}=\frac{b_i-\displaystyle\sum_{j=1}^{i-1}a_{ij}x_j^{(k+1)}-\displaystyle\sum^n_{j=i+1}a_{ij}x_j^{(k)}}{a_{ii}} \qquad i\in[n] \]
+Migliora il metodo di Jacobi introducendo le componenti già calcolate di $x^{(k+1)}$ nella sua stessa 
+determinazione
+\[ \displaystyle x_i^{(k+1)}=\frac{b_i-\displaystyle\sum_{j=1}^{i-1}a_{ij}x_j^{(k+1)}
+-\displaystyle\sum^n_{j=i+1}a_{ij}x_j^{(k)}}{a_{ii}} \qquad i\in[n] \]
 
 In questo caso, abbiamo scelto la matrice $D$ triangolare inferiore
 
-I metodi di Jacobi e Gauss-Seidel sicuramente convergono quando A è una matrice a diagonale dominante, ma è soltanto una condizione sufficiente
+I metodi di Jacobi e Gauss-Seidel sicuramente convergono quando A è una matrice a diagonale dominante, ma è 
+soltanto una condizione sufficiente
 
 Se A è simmetrica e definita positiva, il metodo di Gauss-Seidel converge
 
-Le convergenze di questi due metodi sono indpendenti, ma quando entrambi convergono generalmente Gauss-Seidel è "il doppio più veloce"
+Le convergenze di questi due metodi sono indpendenti, ma quando entrambi convergono generalmente Gauss-Seidel 
+è "il doppio più veloce"
 %%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Metodo SOR}
 
 Consideriamo dal metodo di Gauss-Seidel la differenza tra due approssimazioni della soluzione: 
 
-$r_i^{(k)}=x_i^{(k+1)}-x_i^{(k)}=\frac{1}{a_{ii}}\left( b_i-\sum_{j=1}^{i-1}a_{ij}x_j^{(k+1)} - \sum_{\boldsymbol{j=i}}^na_{ij}x_j^{(k)} \right) \qquad i\in[n]$
+$r_i^{(k)}=x_i^{(k+1)}-x_i^{(k)}=\frac{1}{a_{ii}}\left( b_i-\sum_{j=1}^{i-1}a_{ij}x_j^{(k+1)} 
+- \sum_{\boldsymbol{j=i}}^na_{ij}x_j^{(k)} \right) \qquad i\in[n]$
 
 Dove $r_i^{(k)}$ rappresenta la correzione da apportare a $x_i^{(k)}$ per ottenere la nuova approssimazione
 
-Immaginiamo di introdurre un parametro $\omega$ tale da accelerare il più possibile la convergenza della successione $\{x^{(k)}\}$:
+Immaginiamo di introdurre un parametro $\omega$ tale da accelerare il più possibile la convergenza della 
+successione $\{x^{(k)}\}$:
 
 $x_i^{(k+1)}=x_i^{(k)}+\omega r_i^{(k)}$
 
-In questo caso, il sistema è come se fosse scritto nella forma $\omega Ax=\omega b$ con decomposizione $\omega A = D_\omega + C_\omega$
+In questo caso, il sistema è come se fosse scritto nella forma $\omega Ax=\omega b$ con decomposizione 
+$\omega A = D_\omega + C_\omega$
 
 Si nota che quando $\omega=1$ il metodo coincide con quello di Gauss-Seidel
 
-Il calcolo del valore ottimale di $\omega$ non è in generale semplice, ma la convergenza è assicurata per $0<\omega<2$ se $A$ è simmetrica definita positiva
+Il calcolo del valore ottimale di $\omega$ non è in generale semplice, ma la convergenza è assicurata per 
+$0<\omega<2$ se $A$ è simmetrica definita positiva
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Metodo del gradiente coniugato}
 
-Osserviamo che la soluzione del sistema $Ax=b$ (con $A$ simmetrica e definita positiva) è equivalente alla minimizzazione del funzionale $\Phi(x)=\frac{1}{2}x^TAx-x^Tb$, infatti $\nabla\Phi(x)=Ax-b$ e il minimo è unico e coincidente con $x=A^{-1}b$
+Osserviamo che la soluzione del sistema $Ax=b$ (con $A$ simmetrica e definita positiva) è equivalente alla 
+minimizzazione del funzionale $\Phi(x)=\frac{1}{2}x^TAx-x^Tb$, infatti $\nabla\Phi(x)=Ax-b$ e il minimo è 
+unico e coincidente con $x=A^{-1}b$
 \\
 
 Per minimizzare, seguiamo localmente la direzione di massima pendenza $-\nabla\Phi$
 
-Se $-\nabla\Phi(x_k)=o$, allora $x_k$ è la soluzione, altrimenti, definito $r_k=b-Ax_k=-\nabla\Phi(x_k)$, esiste sicuramente $\alpha>0$ tale che $\Phi(x_k+\alpha r_k)<\Phi(x_k)$ (in quanto $x_k$ non è il minimo)
+Se $-\nabla\Phi(x_k)=o$, allora $x_k$ è la soluzione, altrimenti, definito $r_k=b-Ax_k=-\nabla\Phi(x_k)$, 
+esiste sicuramente $\alpha>0$ tale che $\Phi(x_k+\alpha r_k)<\Phi(x_k)$ (in quanto $x_k$ non è il minimo)
 
 Sostituendo otteniamo $x_{k+1}=x_k+\alpha r_k=x_k-\alpha\nabla\Phi(x_k)$
 
-Scegliamo $\alpha$ in modo che $\Phi(x_{(k+1)}$ sia minimo e sappiamo che il valore ottimo di $\alpha$ è $\alpha_k =\frac{r_k^Tr_k}{r_k^TAr_k}>0$ e si dimostra che $r^T_{(k+1)}r_k=0$, cioè i due residui sono ortogonali
+Scegliamo $\alpha$ in modo che $\Phi(x_{(k+1)}$ sia minimo e sappiamo che il valore ottimo di $\alpha$ è 
+$\alpha_k =\frac{r_k^Tr_k}{r_k^TAr_k}>0$ e si dimostra che $r^T_{(k+1)}r_k=0$, cioè i due residui sono 
+ortogonali
 \\
 
-La convergenza del metodo è assicurata, ma la sua velocità diminuisce all'aumentare del \textit{numero di condizionamento spettrale} $K_2(A)=\frac{\lambda_1(A)}{\lambda_n(A)}$, dove $\lambda_1\geq\lambda_2\geq...\geq\lambda_n$ sono gli autovalori di $A$ (reali e positivi dato che $A$ è per ipotesi simmetrica e definita positiva)
+La convergenza del metodo è assicurata, ma la sua velocità diminuisce all'aumentare del \textit{numero di 
+condizionamento spettrale} $K_2(A)=\frac{\lambda_1(A)}{\lambda_n(A)}$, dove 
+$\lambda_1\geq\lambda_2\geq...\geq\lambda_n$ sono gli autovalori di $A$ (reali e positivi dato che $A$ è per 
+ipotesi simmetrica e definita positiva)
 
-Inoltre, si dimostra che in aritmetica con precisione infinita il metodo arriva alla soluzione esatta in al più $n$ iterazioni. Tuttavia, con una precisione finita di calcolo i valori nei vari step saranno approssimati e perciò dopo $n$ passaggi si giungerà soltanto a una approssimazione della soluzione, non necessariamente con la precisione di macchina. Oltre a ciò, anche se la precisione di macchina venisse raggiunta, quando la dimensione di $A$ è molto grande tale numero sarebbe comunque eccessivo
+Inoltre, si dimostra che in aritmetica con precisione infinita il metodo arriva alla soluzione esatta in al 
+più $n$ iterazioni. Tuttavia, con una precisione finita di calcolo i valori nei vari step saranno approssimati 
+e perciò dopo $n$ passaggi si giungerà soltanto a una approssimazione della soluzione, non necessariamente 
+con la precisione di macchina. Oltre a ciò, anche se la precisione di macchina venisse raggiunta, quando la 
+dimensione di $A$ è molto grande tale numero sarebbe comunque eccessivo
 
-Il metodo converge rapidamente quando $A=I+B$ con $\text{rank}(B)\ll n$ oppure quando $K_2(A)\approx 1$. Se non ci si trova in queste condizioni, esistono tecniche di \textit{precondizionamento} che consentono di trasformare un sistema simmetrico definito positivo in uno equivalente dalla cui soluzione è possibile dedurre quella del sistema originale 
+Il metodo converge rapidamente quando $A=I+B$ con $\text{rank}(B)\ll n$ oppure quando $K_2(A)\approx 1$. 
+Se non ci si trova in queste condizioni, esistono tecniche di \textit{precondizionamento} che consentono di 
+trasformare un sistema simmetrico definito positivo in uno equivalente dalla cui soluzione è possibile 
+dedurre quella del sistema originale 
 \\
 
-La struttura di base del precondizionamento è, presa una matrice simmetrica non singolare $C$: $C^{-1}AC^{-1}Cx=C^{-1}b$\quad e ponendo $\overline{A}=C^{-1}AC^{-1} \quad \overline{x}=Cx \quad \overline{b}=C^{-1}b$\quad otteniamo $\overline{A}\overline{x}=\overline{b}$
+La struttura di base del precondizionamento è, presa una matrice simmetrica non singolare 
+$C$: $C^{-1}AC^{-1}Cx=C^{-1}b$\quad e ponendo $\overline{A}=C^{-1}AC^{-1} \quad \overline{x}=Cx 
+\quad \overline{b}=C^{-1}b$\quad otteniamo $\overline{A}\overline{x}=\overline{b}$
 
-Si nota che $\overline{A}$ è ancora simmetrica definita positiva, quindi si sceglie $C$ in modo da rendere $K_2(\overline{A})\approx 1$
+Si nota che $\overline{A}$ è ancora simmetrica definita positiva, quindi si sceglie $C$ in modo da rendere 
+$K_2(\overline{A})\approx 1$
 
-È possibile scrivere l'algoritmo in modo da ottenere direttamente $x$ senza dover mai calcolare o usare $C^{-1}$. Si osserva che l'algoritmo dipende soltanto da $M=C^2$, simmetrica e definita positiva, che viene chiamata \textit{precondizionatore}. $C$ deve essere tale da rendere $Mz=r$ di facile soluzione 
+È possibile scrivere l'algoritmo in modo da ottenere direttamente $x$ senza dover mai calcolare o usare 
+$C^{-1}$. Si osserva che l'algoritmo dipende soltanto da $M=C^2$, simmetrica e definita positiva, che viene 
+chiamata \textit{precondizionatore}. $C$ deve essere tale da rendere $Mz=r$ di facile soluzione 
 \\
 
-Uno dei precondizionatori più importanti discende dalla \textit{fattorizzazione incompleta di Choleski} della matrice $A$. Ha la forma $M=\overline{L}_1\overline{L}_1^T$, dove
-$\left\{ \begin{array}{ll}(\overline{L}_1)_{ij}=(L_1)_{ij} & \text{se } (A)_{ij}\neq 0 \\ (\overline{L}_1)_{ij}=0 & \text{se } (A)_{ij}=0\end{array} \right.$ con $L_1$ matrice triangolare inferiore della decomposizione di Choleski classica
+Uno dei precondizionatori più importanti discende dalla \textit{fattorizzazione incompleta di Choleski} della 
+matrice $A$. Ha la forma $M=\overline{L}_1\overline{L}_1^T$, dove
+$\left\{ \begin{array}{ll}(\overline{L}_1)_{ij}=(L_1)_{ij} & \text{se } (A)_{ij}\neq 0 
+\\ (\overline{L}_1)_{ij}=0 & \text{se } (A)_{ij}=0\end{array} \right.$ con $L_1$ matrice triangolare 
+inferiore della decomposizione di Choleski classica
 
-PROVA
+
 
 \end{document}
 
