@@ -358,6 +358,37 @@ inferiore della decomposizione di Choleski classica
 
 \chapter{Approssimazione di funzioni}
 
+\section{Interpolazione polinomale in un intervallo limitato}
+
+Siano dati $n+1$ punti $(x_i,y_i)\quad i=0,...,n,\quad y_i=f(x_i)$ con $x_i\neq x_j$ per $i\neq j$. Si vuole 
+determinare il polinomio di grado minimo passante per i punti assegnati. È sufficiente quindi considerare il 
+polinomio di grado $n$, che ha $n+1$ coefficienti
+
+$P_n(x)=\sum_{i=0}^n a_ix^i$
+
+imponendo le $n+1$ condizioni
+
+$\left\{ \begin{array}{l} a_0 + a_1x_0+...+a_nx_0^n=y_0 \\
+a_0 + a_1x_1+...+a_nx_1^n=y_1 \\ 
+............................................\\
+a_0 + a_1x_n+...+a_nx_n^n=y_n \end{array}\right.$
+\\
+
+I parametri $a_0,a_1,...,a_n$ sono la soluzione del sistema 
+
+$\left( \begin{array}{llll} 1 & x_0 & ... & x_0^n \\
+1 & x_1 & ... & x_1^n \\
+... & ... & ... & ... \\
+1 & x_n & ... & x_n^n \\ \end{array}\right)
+\left( \begin{array}{l} a_0 \\ a_1 \\ ... \\ a_n \end{array}\right) =
+\left( \begin{array}{l} y_0 \\ y_1 \\ ... \\ y_n \end{array}\right)
+$
+
+La matrice del sistema è detta \textit{di Vandermonde} e risulta non singolare se e solo se $x_i\neq x_j$ 
+per $i\neq j$, quindi la soluzione di questo sistema esiste ed è unica
+
+Tuttavia, la matrice di Vandermonde è mal condizionata, quindi non conviene risolvere questo sistema 
+
 \end{document}
 
 
