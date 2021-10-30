@@ -1,0 +1,213 @@
+\documentclass[openany]{book} % oppure \openany in mezzo al libro
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{natbib}
+\usepackage{amsmath}
+\usepackage{latexsym}
+\usepackage{geometry}
+\usepackage{amsfonts}
+\usepackage{multicol}
+\usepackage[none]{hyphenat}
+\usepackage{blindtext}
+\sloppy
+%\raggedright 
+ \geometry{
+ a4paper,
+ left=20mm,
+ right=20mm,
+ top=20mm,
+ bottom=20mm,
+}
+
+\pagestyle{empty}
+
+\title{Titolo}
+\date{}
+\author{MT}
+\renewcommand{\baselinestretch}{1.2}
+
+\setlength{\parindent}{0em}
+%\setlength{\parskip}{0.2em}
+
+\begin{document}
+
+\begin{center}
+\Large Probabilità e Statistica 
+
+\large Formulario
+\end{center}
+
+\textbf{Disposizioni con ripetizione} $D^R_{n.k}=n^k$
+
+\textbf{Disposizioni semplici} $D_{n,k}=\frac{n!}{(n-k)!}$
+
+\textbf{Permutazioni di n elementi} \quad $P_n = D_{n,n}=n!$
+
+\textbf{Combinazioni semplici} (numero di sottoinsiemi di cardinalità $k$) \quad $C_{n,k}=\binom {n}{k} = \frac{n!}{k!(n-k)!}$
+
+\textbf{Coefficiente multinomiale} (numero di modi in cui si può partizionare un insieme in $r$ sottoinsiemi di cardinalità $k_1,\dots,k_n$) \quad $\binom {n}{k_1,\dots,k_n}=\frac{n!}{k_1 ! \dots k_n !}$ 
+
+\textbf{Formula di Poincaré} (principio di inclusione - esclusione) \quad $\mu(A_1 \cup \dots \cup A_n) =$ 
+
+$= \sum_{k=1}^n (-1)^{k+1}\sum_{1\leq i_1 < \dots <i_k \leq n}\mu(A_{i_1}\cap \dots \cap A_{i_k})$, $\quad \mu$ misura finita
+
+\textbf{Algebra dei valori attesi}
+
+$\mathbb {E}(aX+bY+c)= a\mathbb{E}(X)+b \mathbb{E}(Y)+c$
+
+$\text {Var}(aX+bY+c)= a^2 \text{Var}(X)+b^2 \text{Var}(Y)+2ab\text{Cov}(X,Y)$
+
+$\text{Cov}(aX+bY+c,Z) = a \text{Cov}(X,Z)+b \text{Cov(Y,Z)}$
+
+\textbf{Convoluzione} $X,\,Y$ variabili aleatorie reali indipendenti, $Z=X+Y$
+
+$f_Z(z) = \int_{-\infty}^{+\infty}f_X(z-y)f_Y(y)\,dy = \int_{-\infty}^{+\infty}f_Y(z-x)f_X(x)\,dx$
+
+
+
+\subsection*{Distribuzioni}
+
+\begin{multicols}{2}
+
+\textbf{Binomiale} $(n,p)$  
+
+\underline{Densità} $p_X(k) = \binom {n}{k}p^k(1-p)^{n-k},\,k \in \{0,\dots,n\}$
+
+\underline{Media} $np$
+
+\underline{Varianza} $np(1-p)$
+
+\underline{Funzione caratteristica} $\phi_X(t)=((1-p)+pe^{it})^n$
+
+\underline{Commenti} Numero di successi in $n$ lanci con probabilità $p$ di successo
+\\
+
+\textbf{Pascal} $(p,n)$
+
+\underline{Densità} $p_X(k) = \binom {k+n}{k+1}p^k$
+
+\underline{Media} $\frac{n}{p}$
+
+\underline{Varianza} $n\frac{(1-p)}{p^2}$
+
+\underline{Funzione caratteristica} $\phi_X(t)=\left(\frac{pe^{it}}{1-e^{it}(1-p)}\right)^n$
+
+\underline{Commenti} Numero di fallimenti precedenti il successo $n$-esimo
+\\
+
+\textbf{Geometrica} $(p)$
+
+\underline{Densità} $p_X(k) = p(1-p)^k-1, \, k =1,2,\dots$
+
+\underline{Media} $\frac{1}{p}$
+
+\underline{Varianza} $\frac{1-p}{p^2}$
+
+\underline{Funzione di ripartizione} $F_X(k)=1-(1-p)^k$
+
+\underline{Funzione caratteristica} $\phi_X(t)= \frac{pe^{it}}{1-e^{it}(1-p)}$
+
+\underline{Commenti} Numero di fallimenti che precedono il primo successo
+
+\columnbreak
+
+\textbf{Ipergeometrica} $(n,h,r)$
+
+\underline{Densità} $p_X(k) = \frac{\binom {h}{k}\binom {n-h}{r-k}}{\binom {n}{r}},\,k\leq h,\,0\leq r-k\leq n-h$
+
+\underline{Media} $\frac{rh}{n}$
+
+\underline{Varianza} $\frac{rh}{n}\left(1-\frac{h}{n}\right)\frac{n-r}{n-1}$
+
+\underline{Commenti} Conta per $r$ elementi distinti estratti a caso senza reinserimento da un insieme con cardinalità $n$ quanti sono nel sottoinsieme di cardinalità $h$
+\\
+
+\textbf{Uniforme} $(a,b)$
+
+\underline{Densità} $f_X(x) = \frac{1}{b-a}\boldsymbol{1}_{(a,b)}(x)$
+
+\underline{Media} $\frac{a+b}{2}$
+
+\underline{Varianza} $\frac{(b-a)^2}{12}$
+
+\underline{Funzione di ripartizione} $F_X(x)=\frac{x-a}{b-a}$
+
+\underline{Funzione caratteristica} $\phi_X(t)=\frac{e^{ibt}-e^{iat}}{ibt-iat}$
+\\
+
+\textbf{Normale} $(\mu,\sigma^2)$
+
+\underline{Densità} $f_X(x) = \frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}$
+
+\underline{Media} $\mu$
+
+\underline{Varianza} $\sigma^2$
+
+\underline{Funzione caratteristica} $\phi_X(t)=e^{\mu it-\frac{\sigma^2t^2}{2}}$
+\\
+
+\textbf{Poisson} $(\lambda)$
+
+\underline{Densità} $p_X(k) = e^{-\lambda}\frac{\lambda^k}{k!},\,k=0,1,\dots$
+
+\underline{Media} $\lambda$
+
+\underline{Varianza} $\lambda$
+
+\underline{Funzione caratteristica} $\phi_X(t)=e^{\lambda(e^{it}-1)}$
+
+\underline{Commenti} Descrive il numero di eventi in un intervallo di tempo
+
+\columnbreak
+
+\textbf{Esponenziale} $(\lambda)$
+
+\underline{Densità} $f_X(x) = \lambda e^{-\lambda x}$
+
+\underline{Media} $\frac{1}{\lambda}$
+
+\underline{Varianza} $\frac{1}{\lambda^2}$
+
+\underline{Funzione di ripartizione} $F_X(x)=1-e^{-\lambda x}$
+
+\underline{Funzione caratteristica} $\phi_X(t)=\left(1-\frac{it}{\lambda}\right)^{-1}$
+
+\underline{Commenti} Descrive il tempo di attesa tra due eventi successivi
+
+\columnbreak
+
+\textbf{Gamma} $(\alpha, \lambda)$
+
+\underline{Densità} $f_X(x) = \frac{\lambda^\alpha}{\Gamma(\alpha)}x^{\alpha-1}e^{-\lambda x}\boldsymbol{1}_{(a,b)}(x)$,
+
+con $\Gamma(\alpha)=\int_0^\infty y^{\alpha-1}e^{-y}\,dy$
+
+\underline{Media} $\frac{\alpha}{\lambda}$
+
+\underline{Varianza} $\frac{\alpha}{\lambda^2}$
+
+\underline{Funzione caratteristica} $\phi_X(t)=\left(1-\frac{it}{\lambda}\right)^{-k}$
+
+\underline{Commenti} $\Gamma(n,\lambda),\,n\in \mathbb{N},$ è una \textit{distribuzione di Erlang}
+
+\end{multicols}
+
+
+\blindtext
+\\
+
+\textbf{Proprietà funzione $\Gamma$}
+
+$\Gamma(1)=1$ , \quad $\Gamma(n)=(n-1)!,\,n\in \mathbb{N}$ , \quad $\Gamma(\frac{1}{2})=\sqrt {\pi}$ , \quad $\Gamma(\frac{3}{2})=\frac{1}{2}\Gamma(\frac{1}{2})=\frac{1}{2}\pi,\dots$
+\\
+
+\textbf{Proprietà distribuzione $\Gamma$}
+
+$\Gamma(1,\lambda) \sim \text{Exp}(\lambda)$ , \quad $\Gamma(\frac{1}{2},\frac{1}{2})\sim\chi^2(1)$ 
+
+
+
+
+\end{document}
+
