@@ -60,11 +60,35 @@ $\text {Var}(aX+bY+c)= a^2 \text{Var}(X)+b^2 \text{Var}(Y)+2ab\text{Cov}(X,Y)$
 
 $\text{Cov}(aX+bY+c,Z) = a \text{Cov}(X,Z)+b \text{Cov(Y,Z)}$
 
-\textbf{Convoluzione} $X,\,Y$ variabili aleatorie reali indipendenti, $Z=X+Y$
+\textbf{Convoluzione} $X,\,Y$ variabili aleatorie indipendenti, $Z=X+Y$
 
 $f_Z(z) = \int_{-\infty}^{+\infty}f_X(z-y)f_Y(y)\,dy = \int_{-\infty}^{+\infty}f_Y(z-x)f_X(x)\,dx$
 
+\underline{Casi particolari}
 
+\begin{itemize}
+
+\item $X\sim P(\lambda)\,,\quad Y\sim P(\mu)\Rightarrow Z\sim P(\lambda + \mu)$
+
+\item $X\sim B(n,p)\,,\quad Y\sim B(m,p)\Rightarrow Z\sim B(n+m,p)$
+
+\item $X\sim \text{Geo}(p)\,,\quad Y\sim \text{Geo}(p)\Rightarrow Z\sim \text{Pascal}(2,p)$
+
+\item $X\sim \text{Pascal}(r,p)\,,\quad Y\sim \text{Pascal}(s,p)\Rightarrow Z\sim \text{Pascal}(r+s,p)$
+
+\item $X\sim \mathcal{N}(\mu_X,\sigma_X^2)\,,\quad Y\sim \mathcal{N}(\mu_Y,\sigma_Y^2)\Rightarrow Z\sim \mathcal{N}(\mu,\sigma^2)$ con $\mu=\mu_X+\mu_Y$ e $\sigma^2=\sigma_X^2+\sigma_Y^2$
+
+\item $X\sim \Gamma(\alpha,\lambda)\,,\quad Y\sim \Gamma(\beta,\lambda)\Rightarrow Z\sim \Gamma(\alpha+\beta,\lambda)$
+
+\item $X\sim \text{Exp}(\lambda)\,,\quad Y\sim \text{Exp}(\lambda)\Rightarrow Z\sim \Gamma(2,\lambda)$
+
+\item $X\sim\chi^2(m)\,,\quad Y\sim\chi^2(n)\Rightarrow Z\sim\chi^2(m+n)$
+
+\item $X_1,\dots, X_n \sim_{iid} \mathcal{N}(0,1)\Rightarrow X_1^2,\dots, X_n^2 \sim_{iid}\Gamma(\frac{1}{2},\frac{1}{2})\,(\chi^2(1))\Rightarrow Y=X_1^2+\dots+X_n^2\sim\Gamma(\frac{n}{2},\frac{1}{2})$ 
+
+$Y\sim\chi^2(n)$ Chi quadro con $n$ gradi di libertà
+
+\end{itemize}
 
 \subsection*{Distribuzioni}
 
@@ -83,6 +107,21 @@ $f_Z(z) = \int_{-\infty}^{+\infty}f_X(z-y)f_Y(y)\,dy = \int_{-\infty}^{+\infty}f
 \underline{Commenti} Numero di successi in $n$ lanci con probabilità $p$ di successo
 \\
 
+\textbf{Multinomiale} $(n,p_1,\dots,p_N)$
+
+\underline{Densità} $f_{\underline {X}}(n_1,\dots,n_N)=$
+
+$=\binom {n}{n_1 \dots n_{N+1}}\left(p_1^{n_1}\dots p_N^{n_N}\right)\left(1-\sum_{i=1}^N p_i\right)^{\left(n-\sum_{i=1}^N n_i\right)}=$
+
+$=\binom {n}{n_1 \dots n_{N+1}}\left(p_1^{n_1}\dots p_N^{n_N}\right)p_{N+1}^{n_{N+1}}$
+
+\underline{Commenti} $n$ prove ripetute e indipendenti con $N+1$ possibili risultati di probabilità, \quad $p_1,\dots,p_N \Rightarrow$
+
+$p_{N+1}=1-\sum_{i=1}^Np_i$
+
+La marginale della multinomiale è una binomiale
+\\
+
 \textbf{Pascal} $(p,n)$
 
 \underline{Densità} $p_X(k) = \binom {k+n}{k+1}p^k$
@@ -98,7 +137,7 @@ $f_Z(z) = \int_{-\infty}^{+\infty}f_X(z-y)f_Y(y)\,dy = \int_{-\infty}^{+\infty}f
 
 \textbf{Geometrica} $(p)$
 
-\underline{Densità} $p_X(k) = p(1-p)^k-1, \, k =1,2,\dots$
+\underline{Densità} $p_X(k) = p(1-p)^{k-1}, \, k =1,2,\dots$
 
 \underline{Media} $\frac{1}{p}$
 
@@ -109,8 +148,7 @@ $f_Z(z) = \int_{-\infty}^{+\infty}f_X(z-y)f_Y(y)\,dy = \int_{-\infty}^{+\infty}f
 \underline{Funzione caratteristica} $\phi_X(t)= \frac{pe^{it}}{1-e^{it}(1-p)}$
 
 \underline{Commenti} Numero di fallimenti che precedono il primo successo
-
-\columnbreak
+\\
 
 \textbf{Ipergeometrica} $(n,h,r)$
 
@@ -147,6 +185,19 @@ $f_Z(z) = \int_{-\infty}^{+\infty}f_X(z-y)f_Y(y)\,dy = \int_{-\infty}^{+\infty}f
 \underline{Funzione caratteristica} $\phi_X(t)=e^{\mu it-\frac{\sigma^2t^2}{2}}$
 \\
 
+\textbf{Chi quadro} $(k)$
+
+\underline{Densità} $f_X(x) = \frac{1}{2^{\frac{k}{2}}\Gamma(\frac{k}{2})}x^{\frac{k}{2}-1}e^{-\frac{x}{2}}\boldsymbol{1}_{(0,+\infty)}(x)$, $k\in \mathbb{N}^+$
+
+\underline{Media} $k$
+
+\underline{Varianza} $2k$
+
+\underline{Funzione caratteristica} $\phi_X(t)= (1-2it)^{-\frac{k}{2}}$
+
+\underline{Commenti} $\chi^2=\sum_{i=1}^k X_i^2\,,\,X_i\sim \mathcal{N}(0,1)\,iid$  e $k$ è detto \textit{numero di gradi di libertà}
+\\
+
 \textbf{Poisson} $(\lambda)$
 
 \underline{Densità} $p_X(k) = e^{-\lambda}\frac{\lambda^k}{k!},\,k=0,1,\dots$
@@ -158,8 +209,7 @@ $f_Z(z) = \int_{-\infty}^{+\infty}f_X(z-y)f_Y(y)\,dy = \int_{-\infty}^{+\infty}f
 \underline{Funzione caratteristica} $\phi_X(t)=e^{\lambda(e^{it}-1)}$
 
 \underline{Commenti} Descrive il numero di eventi in un intervallo di tempo
-
-\columnbreak
+\\
 
 \textbf{Esponenziale} $(\lambda)$
 
@@ -174,14 +224,13 @@ $f_Z(z) = \int_{-\infty}^{+\infty}f_X(z-y)f_Y(y)\,dy = \int_{-\infty}^{+\infty}f
 \underline{Funzione caratteristica} $\phi_X(t)=\left(1-\frac{it}{\lambda}\right)^{-1}$
 
 \underline{Commenti} Descrive il tempo di attesa tra due eventi successivi
-
-\columnbreak
+\\
 
 \textbf{Gamma} $(\alpha, \lambda)$
 
-\underline{Densità} $f_X(x) = \frac{\lambda^\alpha}{\Gamma(\alpha)}x^{\alpha-1}e^{-\lambda x}\boldsymbol{1}_{(a,b)}(x)$,
+\underline{Densità} $f_X(x) = \frac{\lambda^\alpha}{\Gamma(\alpha)}x^{\alpha-1}e^{-\lambda x}\boldsymbol{1}_{(0,+\infty)}(x)$,
 
-con $\Gamma(\alpha)=\int_0^\infty y^{\alpha-1}e^{-y}\,dy$
+con $\Gamma(\alpha)=\int_0^{+\infty} y^{\alpha-1}e^{-y}\,dy$
 
 \underline{Media} $\frac{\alpha}{\lambda}$
 
@@ -189,25 +238,27 @@ con $\Gamma(\alpha)=\int_0^\infty y^{\alpha-1}e^{-y}\,dy$
 
 \underline{Funzione caratteristica} $\phi_X(t)=\left(1-\frac{it}{\lambda}\right)^{-k}$
 
-\underline{Commenti} $\Gamma(n,\lambda),\,n\in \mathbb{N},$ è una \textit{distribuzione di Erlang}
-
 \end{multicols}
 
+\textbf{Proprietà funzione $\Gamma(\alpha)$ di Eulero} 
 
-\blindtext
+$\Gamma(1)=1$ , \quad 
+$\Gamma(\alpha+1) = \alpha\Gamma(\alpha)$ , \quad
+$\Gamma(n)=(n-1)!\,,\,n\in \mathbb{N}$ , \quad 
+$\Gamma(\frac{1}{2})=\sqrt {\pi}$ , \quad 
+$\Gamma(\frac{3}{2})=\frac{1}{2}\Gamma(\frac{1}{2})=\frac{1}{2}\pi,\dots$
 \\
 
-\textbf{Proprietà funzione $\Gamma$}
+\textbf{Proprietà distribuzione} $\Gamma(\alpha,\lambda)$
 
-$\Gamma(1)=1$ , \quad $\Gamma(n)=(n-1)!,\,n\in \mathbb{N}$ , \quad $\Gamma(\frac{1}{2})=\sqrt {\pi}$ , \quad $\Gamma(\frac{3}{2})=\frac{1}{2}\Gamma(\frac{1}{2})=\frac{1}{2}\pi,\dots$
-\\
+$\Gamma(1,\lambda) \sim \text{Exp}(\lambda)$ , \quad $X\sim \mathcal {N}(0,1)\Rightarrow X^2\sim\Gamma(\frac{1}{2},\frac{1}{2})\sim\chi^2(1)$ 
 
-\textbf{Proprietà distribuzione $\Gamma$}
+$\Gamma(n,\lambda),\,n\in \mathbb{N},$ è una \textit{distribuzione di Erlang}, $\alpha$ si dice \textit{parametro di forma} e $\lambda$ \textit{parametro di scala} (tempo di attesa per la realizzazione di $n$ eventi in un processo di Poisson)
 
-$\Gamma(1,\lambda) \sim \text{Exp}(\lambda)$ , \quad $\Gamma(\frac{1}{2},\frac{1}{2})\sim\chi^2(1)$ 
-
+$X_1,\dots,X_n$ variabili aleatorie indipendenti con distribuzione $\Gamma(\alpha_i,\lambda)\Rightarrow \sum_{i=1}^nX_i\sim\Gamma(\alpha_1+\dots+\alpha_n,\lambda)$
 
 
+\huge aggiornato alla lezione 14
 
 \end{document}
 
