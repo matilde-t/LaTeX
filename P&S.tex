@@ -10,6 +10,9 @@
 \usepackage{multicol}
 \usepackage[none]{hyphenat}
 \usepackage{blindtext}
+\usepackage{graphicx}
+
+
 \sloppy
 %\raggedright 
  \geometry{
@@ -19,6 +22,8 @@
  top=20mm,
  bottom=20mm,
 }
+
+\newcommand{\ind}{\mathrel{\text{\scalebox{1.07}{$\perp\mkern-10mu\perp$}}}}
 
 \pagestyle{empty}
 
@@ -51,6 +56,14 @@
 \textbf{Formula di Poincaré} (principio di inclusione - esclusione) \quad $\mu(A_1 \cup \dots \cup A_n) =$ 
 
 $= \sum_{k=1}^n (-1)^{k+1}\sum_{1\leq i_1 < \dots <i_k \leq n}\mu(A_{i_1}\cap \dots \cap A_{i_k})$, $\quad \mu$ misura finita
+
+\textbf{Valore atteso} $\mathbb{E}(X) = \int_{-\infty}^{+\infty}xf(x)\,dx$
+
+\textbf{Varianza} $\text{Var}(X)=\mathbb{E}(X^2)-\mathbb{E}(X)^2$
+
+\textbf{Covarianza} $\text{Cov}(X,Y)=\mathbb{E}(XY)-\mathbb{E}(X)\mathbb{E}(Y)$
+
+\textbf{Coefficiente di correlazione} $\rho_{XY} = \frac{\text{Cov}(X,Y)}{\sqrt {\text{Var}(X)\text{Var}(X)}}$
 
 \textbf{Algebra dei valori attesi}
 
@@ -94,6 +107,21 @@ $Y\sim\chi^2(n)$ Chi quadro con $n$ gradi di libertà
 
 \begin{multicols}{2}
 
+\textbf{Bernoulli} $(p)$
+
+\underline{Densità} $p_X(k) = \begin {cases}1-p & k =0\\ p & k=1 \\ 0 & \text{altrimenti}\end {cases}$
+
+\underline{Media} $p$
+
+\underline{Varianza} $p(1-p)$
+
+\underline{Funzione di ripartizione} $F_X(k)=\begin {cases}0 & k<0 \\ 1-p & 0\leq k <1 \\ 1 & k\geq 1\end {cases}$
+
+\underline{Funzione caratteristica} $\Phi_X(t)= 1-p+pe^{it}$
+
+\underline{Commenti} Fallimento e successo
+\\
+
 \textbf{Binomiale} $(n,p)$  
 
 \underline{Densità} $p_X(k) = \binom {n}{k}p^k(1-p)^{n-k},\,k \in \{0,\dots,n\}$
@@ -102,7 +130,7 @@ $Y\sim\chi^2(n)$ Chi quadro con $n$ gradi di libertà
 
 \underline{Varianza} $np(1-p)$
 
-\underline{Funzione caratteristica} $\phi_X(t)=((1-p)+pe^{it})^n$
+\underline{Funzione caratteristica} $\Phi_X(t)=((1-p)+pe^{it})^n$
 
 \underline{Commenti} Numero di successi in $n$ lanci con probabilità $p$ di successo
 \\
@@ -130,7 +158,7 @@ La marginale della multinomiale è una binomiale
 
 \underline{Varianza} $n\frac{(1-p)}{p^2}$
 
-\underline{Funzione caratteristica} $\phi_X(t)=\left(\frac{pe^{it}}{1-e^{it}(1-p)}\right)^n$
+\underline{Funzione caratteristica} $\Phi_X(t)=\left(\frac{pe^{it}}{1-e^{it}(1-p)}\right)^n$
 
 \underline{Commenti} Numero di fallimenti precedenti il successo $n$-esimo
 \\
@@ -145,9 +173,11 @@ La marginale della multinomiale è una binomiale
 
 \underline{Funzione di ripartizione} $F_X(k)=1-(1-p)^k$
 
-\underline{Funzione caratteristica} $\phi_X(t)= \frac{pe^{it}}{1-e^{it}(1-p)}$
+\underline{Funzione caratteristica} $\Phi_X(t)= \frac{pe^{it}}{1-e^{it}(1-p)}$
 
 \underline{Commenti} Numero di fallimenti che precedono il primo successo
+
+La discretizzazione di una esponenziale è una geometrica
 \\
 
 \textbf{Ipergeometrica} $(n,h,r)$
@@ -171,7 +201,7 @@ La marginale della multinomiale è una binomiale
 
 \underline{Funzione di ripartizione} $F_X(x)=\frac{x-a}{b-a}$
 
-\underline{Funzione caratteristica} $\phi_X(t)=\frac{e^{ibt}-e^{iat}}{ibt-iat}$
+\underline{Funzione caratteristica} $\Phi_X(t)=\frac{e^{ibt}-e^{iat}}{ibt-iat}$
 \\
 
 \textbf{Normale} $(\mu,\sigma^2)$
@@ -182,7 +212,7 @@ La marginale della multinomiale è una binomiale
 
 \underline{Varianza} $\sigma^2$
 
-\underline{Funzione caratteristica} $\phi_X(t)=e^{\mu it-\frac{\sigma^2t^2}{2}}$
+\underline{Funzione caratteristica} $\Phi_X(t)=e^{\mu it-\frac{\sigma^2t^2}{2}}$
 \\
 
 \textbf{Chi quadro} $(k)$
@@ -193,7 +223,7 @@ La marginale della multinomiale è una binomiale
 
 \underline{Varianza} $2k$
 
-\underline{Funzione caratteristica} $\phi_X(t)= (1-2it)^{-\frac{k}{2}}$
+\underline{Funzione caratteristica} $\Phi_X(t)= (1-2it)^{-\frac{k}{2}}$
 
 \underline{Commenti} $\chi^2=\sum_{i=1}^k X_i^2\,,\,X_i\sim \mathcal{N}(0,1)\,iid$  e $k$ è detto \textit{numero di gradi di libertà}
 \\
@@ -206,7 +236,7 @@ La marginale della multinomiale è una binomiale
 
 \underline{Varianza} $\lambda$
 
-\underline{Funzione caratteristica} $\phi_X(t)=e^{\lambda(e^{it}-1)}$
+\underline{Funzione caratteristica} $\Phi_X(t)=e^{\lambda(e^{it}-1)}$
 
 \underline{Commenti} Descrive il numero di eventi in un intervallo di tempo
 \\
@@ -221,9 +251,11 @@ La marginale della multinomiale è una binomiale
 
 \underline{Funzione di ripartizione} $F_X(x)=1-e^{-\lambda x}$
 
-\underline{Funzione caratteristica} $\phi_X(t)=\left(1-\frac{it}{\lambda}\right)^{-1}$
+\underline{Funzione caratteristica} $\Phi_X(t)=\left(1-\frac{it}{\lambda}\right)^{-1}$
 
 \underline{Commenti} Descrive il tempo di attesa tra due eventi successivi
+
+La discretizzazione di una esponenziale è una geometrica
 \\
 
 \textbf{Gamma} $(\alpha, \lambda)$
@@ -236,7 +268,7 @@ con $\Gamma(\alpha)=\int_0^{+\infty} y^{\alpha-1}e^{-y}\,dy$
 
 \underline{Varianza} $\frac{\alpha}{\lambda^2}$
 
-\underline{Funzione caratteristica} $\phi_X(t)=\left(1-\frac{it}{\lambda}\right)^{-k}$
+\underline{Funzione caratteristica} $\Phi_X(t)=\left(1-\frac{it}{\lambda}\right)^{-k}$
 
 \end{multicols}
 
@@ -247,7 +279,6 @@ $\Gamma(\alpha+1) = \alpha\Gamma(\alpha)$ , \quad
 $\Gamma(n)=(n-1)!\,,\,n\in \mathbb{N}$ , \quad 
 $\Gamma(\frac{1}{2})=\sqrt {\pi}$ , \quad 
 $\Gamma(\frac{3}{2})=\frac{1}{2}\Gamma(\frac{1}{2})=\frac{1}{2}\pi,\dots$
-\\
 
 \textbf{Proprietà distribuzione} $\Gamma(\alpha,\lambda)$
 
@@ -257,8 +288,52 @@ $\Gamma(n,\lambda),\,n\in \mathbb{N},$ è una \textit{distribuzione di Erlang}, 
 
 $X_1,\dots,X_n$ variabili aleatorie indipendenti con distribuzione $\Gamma(\alpha_i,\lambda)\Rightarrow \sum_{i=1}^nX_i\sim\Gamma(\alpha_1+\dots+\alpha_n,\lambda)$
 
+\textbf{Trasformata di Fourier} $\mu$ misura finita su $(\mathbb{R}^N, \mathcal{B}(\mathbb{R}^N))$\quad $\hat {\mu}:\mathbb{R}^N\rightarrow \mathbb{C}$ t.c. $\hat {\mu}(\underline{t})=\int_{\mathbb{R}^N}e^{i \underline{t}^T \underline{x}}\,d\mu(\underline{x})$
 
-\huge aggiornato alla lezione 14
+\textbf{Funzione caratteristica} $\underline{X}$ v. a. vettoriale a valori in $\mathbb{R}^N$, trasformata di Fourier della sua legge $\mathbb{P}_{\underline{X}}$
+
+$\Phi_{\underline{X}}(t)=\mathbb{E}\left[e^{i \underline{t}^T \underline{X}}\right]$
+
+\textbf{Proprietà funzione caratteristica}
+
+\begin{itemize}
+
+\item $\Phi_{\underline{X}}$ limitata, (uniformemente) continua, $\Phi_{\underline{X}}(\underline{0})=1$
+
+\item $\Phi_{-\underline{X}}(\underline{t}) = \overline{\Phi_{\underline{X}}(\underline{t})}$\quad$ \Rightarrow$\quad se $\underline{X}$ è simmetrica, cioè $\underline{X}\sim-\underline{X}$ , \quad $\Phi_{\underline{X}}(\underline{t})\in \mathbb{R}$
+
+\item $\underline{X}\ind \underline{Y}$ \quad $\Rightarrow$ \quad $\Phi_{\underline{X}+\underline{Y}}(\underline{t})=\Phi_{\underline{X}}(\underline{t})\cdot\Phi_{\underline{X}}(\underline{t})$
+
+\item $\Phi_{A\underline{X}+\underline{b}}(\underline{t})= e^{i \underline{t}^T \underline{b}}\,\Phi_{\underline{X}}(A^T\underline{t})$
+
+\item $\Phi_{X_j}(t) = \Phi_{\underline{X}}(t\underline{e}_j)$
+
+\item $\underline{X}$ vettore aleatorio a valori in $\mathbb{R}^N$, se le componenti ammettono momento di ordine $m$ la f.c. ammette tutte le derivate parziali continue fino all'ordine $m$
+
+$\frac{\partial^k}{\partial t_{j_1}\dots\partial t_{j_k}}\Phi_{\underline{X}}(\underline{t}) =i^k \mathbb{E}\left[X_{j_1}\dots X_{j_k}e^{i \underline{t}^T \underline{X}}\right]$ \quad $\forall 1\leq k\leq m$
+
+\begin{itemize}
+
+\item $X$ v.a. reale, $X\in L^m(\Omega,\mathcal{F},\mathbb{P})$ \quad $\Rightarrow$ \quad $ \forall 1\leq k \leq m$ \quad $\Phi_X^{(k)}(t)=\frac{d^k}{dt^k}\Phi_X(t)=i^k \mathbb{E}\left[X^ke^{itX}\right]$ 
+
+e in particolare $\Phi_X^{(k)}(0)=i^k \mathbb{E}\left[X^k\right]$ 
+
+\item se $X$ v.a. reale e $\Phi_X$ ammette derivata continua fino all'ordine $m=2k$ $\Rightarrow$ $X$ ammette momento di ordine $m=2k$ (N.B. solo ordine pari, es. derivabile 5 volte $\Rightarrow$ massimo momento 4)
+
+\end{itemize}
+
+\item $f_{\underline{X}}(\underline{x})=\frac{1}{(2\pi)^N}\int_{\mathbb{R}^N}e^{-i \underline{t}^T \underline{x}}\Phi_{\underline{X}}(\underline{t})\,d \underline{t}$
+
+\item $\Phi_{\underline{X}}(\underline{t})=\mathbb{E}\left[e^{i \underline{t}^T \underline{X}}\right]=\int_{\mathbb{R}^N}e^{i \underline{t}^T \underline{x}}f_{\underline{X}}(\underline{x})\,d \underline{x}$
+
+\item $X_j$ indipendenti \quad $\Leftrightarrow$ \quad $\Phi_{\underline{X}}(\underline{t})=\prod_{j=1}^N \Phi_{X_j}(t_j)$ \quad $\forall \underline{t}\in \mathbb{R}^N$
+
+\end{itemize}
+
+
+
+
+\huge aggiornato alla lezione 15
 
 \end{document}
 
