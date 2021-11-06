@@ -109,18 +109,19 @@ $Y\sim\chi^2(n)$ Chi quadro con $n$ gradi di libertà
 
 \textbf{Bernoulli} $(p)$
 
-\underline{Densità} $p_X(k) = \begin {cases}1-p & k =0\\ p & k=1 \\ 0 & \text{altrimenti}\end {cases}$
+\underline{Densità} $p_X(k) = \begin {cases}1-p & k =0\\ p & k=1\end {cases}$
 
 \underline{Media} $p$
 
 \underline{Varianza} $p(1-p)$
 
-\underline{Funzione di ripartizione} $F_X(k)=\begin {cases}0 & k<0 \\ 1-p & 0\leq k <1 \\ 1 & k\geq 1\end {cases}$
+\underline{Funzione di ripartizione} $F_X(k)=(1-p)\, 0\leq k <1 $
 
 \underline{Funzione caratteristica} $\Phi_X(t)= 1-p+pe^{it}$
 
 \underline{Commenti} Fallimento e successo
-\\
+
+\columnbreak
 
 \textbf{Binomiale} $(n,p)$  
 
@@ -133,7 +134,8 @@ $Y\sim\chi^2(n)$ Chi quadro con $n$ gradi di libertà
 \underline{Funzione caratteristica} $\Phi_X(t)=((1-p)+pe^{it})^n$
 
 \underline{Commenti} Numero di successi in $n$ lanci con probabilità $p$ di successo
-\\
+
+\columnbreak
 
 \textbf{Multinomiale} $(n,p_1,\dots,p_N)$
 
@@ -287,6 +289,38 @@ $\Gamma(1,\lambda) \sim \text{Exp}(\lambda)$ , \quad $X\sim \mathcal {N}(0,1)\Ri
 $\Gamma(n,\lambda),\,n\in \mathbb{N},$ è una \textit{distribuzione di Erlang}, $\alpha$ si dice \textit{parametro di forma} e $\lambda$ \textit{parametro di scala} (tempo di attesa per la realizzazione di $n$ eventi in un processo di Poisson)
 
 $X_1,\dots,X_n$ variabili aleatorie indipendenti con distribuzione $\Gamma(\alpha_i,\lambda)\Rightarrow \sum_{i=1}^nX_i\sim\Gamma(\alpha_1+\dots+\alpha_n,\lambda)$
+
+\pagebreak
+
+\textbf{Trasformazione di variabili e vettori aleatori}
+
+\begin{itemize}
+
+\item \underline{Variabile aleatoria discreta} $f_Y(y)=\mathbb{P}_Y(\{y\})=\mathbb{P}_X(g^{-1}(\{y\}))=\sum_{x\in g^{-1}(\{y\})}f_X(x)$
+ 
+\item \underline{Variabile aleatoria assolutamente continua} 
+
+\begin{itemize}
+
+\item \textit{Metodo della funzione di ripartizione} e poi si deriva per ottenere $f_Y(y)$
+
+\item se $g:\mathbb{R}\rightarrow \mathbb{R}$ t.c. $g\in C^1(\mathbb{R})$, $g$ strettamente monotona e con inversa di classe $C^1$
+
+$f_Y(y)=f_X(g^{-1}(y))|\frac{d}{dy}g^{-1}(y)|\,\boldsymbol{1}_{g(\mathbb{R)}}(y)$
+
+N.B. $\frac{d}{dy}g^{-1}(y) = \frac{1}{g'(g^{-1}(y))}$
+
+la relazione è valida anche per partizioni in cui $g$ soddisfa le ipotesi
+
+\end{itemize}
+
+\item \underline{Vettore aleatorio assolutamente continuo} $W = (S,T) = g(X,Y)$, $g$ è un $C^1$-diffeomorfismo, cioè è differenziabile con continuità, invertibile con determinante Jacobiano non nullo su $A$ e inversa $C^1$
+
+$f_{(S,T)}(s,t)=f_{(X,Y)}(g^{-1}(s,t))\left|\text{det} J_{g^{-1}}(s,t)\right|\boldsymbol{1}_{g(A)}(s,t)$
+
+N.B. $\text{det}J_{g^{-1}}(s,t)=\frac{1}{\text{det}J_g(g^{-1}(s,t))}$
+
+\end{itemize}
 
 \textbf{Trasformata di Fourier} $\mu$ misura finita su $(\mathbb{R}^N, \mathcal{B}(\mathbb{R}^N))$\quad $\hat {\mu}:\mathbb{R}^N\rightarrow \mathbb{C}$ t.c. $\hat {\mu}(\underline{t})=\int_{\mathbb{R}^N}e^{i \underline{t}^T \underline{x}}\,d\mu(\underline{x})$
 
