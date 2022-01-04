@@ -1,4 +1,4 @@
-\documentclass[openany]{book} % oppure \openany in mezzo al libro
+   \documentclass[openany]{book} % oppure \openany in mezzo al libro
 \usepackage[utf8]{inputenc}
 \usepackage[italian]{babel}
 \usepackage[T1]{fontenc}
@@ -42,6 +42,8 @@
 
 \large Formulario
 \end{center}
+
+$e^{ix} = \cos(x)+i\sin(x)$
 
 \textbf{Disposizioni con ripetizione} $D^R_{n.k}=n^k$
 
@@ -147,22 +149,18 @@ $=\binom {n}{n_1 \dots n_{N+1}}\left(p_1^{n_1}\dots p_N^{n_N}\right)p_{N+1}^{n_{
 
 \underline{Commenti} $n$ prove ripetute e indipendenti con $N+1$ possibili risultati di probabilità, \quad $p_1,\dots,p_N \Rightarrow$
 
-$p_{N+1}=1-\sum_{i=1}^Np_i$
-
-La marginale della multinomiale è una binomiale
+$p_{N+1}=1-\sum_{i=1}^Np_i$ ; la marginale della multinomiale è una binomiale
 \\
 
 \textbf{Pascal} $(p,n)$
 
-\underline{Densità} $p_X(k) = \binom {k+n}{k+1}p^k$
+\underline{Densità} $p_X(k) = \binom {n-1}{k-1}p^k(1-p)^{n-k}$
 
-\underline{Media} $\frac{n}{p}$
+\underline{Media} $k\frac{1-p}{p^2}$
 
-\underline{Varianza} $n\frac{(1-p)}{p^2}$
+\underline{Varianza} $\sqrt{k}\frac{\sqrt{(1-p)}}{p}$
 
-\underline{Funzione caratteristica} $\Phi_X(t)=\left(\frac{pe^{it}}{1-e^{it}(1-p)}\right)^n$
-
-\underline{Commenti} Numero di fallimenti precedenti il successo $n$-esimo
+\underline{Commenti} Istante del $k$-esimo successo
 \\
 
 \textbf{Geometrica} $(p)$
@@ -177,9 +175,7 @@ La marginale della multinomiale è una binomiale
 
 \underline{Funzione caratteristica} $\Phi_X(t)= \frac{pe^{it}}{1-e^{it}(1-p)}$
 
-\underline{Commenti} Numero di fallimenti che precedono il primo successo
-
-La discretizzazione di una esponenziale è una geometrica
+\underline{Commenti} Numero di fallimenti che precedono il primo successo; la discretizzazione di una esponenziale è una geometrica
 \\
 
 \textbf{Ipergeometrica} $(n,h,r)$
@@ -191,6 +187,19 @@ La discretizzazione di una esponenziale è una geometrica
 \underline{Varianza} $\frac{rh}{n}\left(1-\frac{h}{n}\right)\frac{n-r}{n-1}$
 
 \underline{Commenti} Conta per $r$ elementi distinti estratti a caso senza reinserimento da un insieme con cardinalità $n$ quanti sono nel sottoinsieme di cardinalità $h$
+\\
+
+\textbf{Poisson} $(\lambda)$
+
+\underline{Densità} $p_X(k) = e^{-\lambda}\frac{\lambda^k}{k!},\,k=0,1,\dots$
+
+\underline{Media} $\lambda$
+
+\underline{Varianza} $\lambda$
+
+\underline{Funzione caratteristica} $\Phi_X(t)=e^{\lambda(e^{it}-1)}$
+
+\underline{Commenti} Descrive il numero di eventi in un intervallo di tempo
 \\
 
 \textbf{Uniforme} $(a,b)$
@@ -206,7 +215,7 @@ La discretizzazione di una esponenziale è una geometrica
 \underline{Funzione caratteristica} $\Phi_X(t)=\frac{e^{ibt}-e^{iat}}{ibt-iat}$
 \\
 
-\textbf{Normale} $(\mu,\sigma^2)$
+\textbf{Normale / Gaussiana} $(\mu,\sigma^2)$
 
 \underline{Densità} $f_X(x) = \frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}$
 
@@ -230,22 +239,9 @@ La discretizzazione di una esponenziale è una geometrica
 \underline{Commenti} $\chi^2=\sum_{i=1}^k X_i^2\,,\,X_i\sim \mathcal{N}(0,1)\,iid$  e $k$ è detto \textit{numero di gradi di libertà}
 \\
 
-\textbf{Poisson} $(\lambda)$
-
-\underline{Densità} $p_X(k) = e^{-\lambda}\frac{\lambda^k}{k!},\,k=0,1,\dots$
-
-\underline{Media} $\lambda$
-
-\underline{Varianza} $\lambda$
-
-\underline{Funzione caratteristica} $\Phi_X(t)=e^{\lambda(e^{it}-1)}$
-
-\underline{Commenti} Descrive il numero di eventi in un intervallo di tempo
-\\
-
 \textbf{Esponenziale} $(\lambda)$
 
-\underline{Densità} $f_X(x) = \lambda e^{-\lambda x}$
+\underline{Densità} $f_X(x) = \lambda e^{-\lambda x}\boldsymbol{1}_{(0,+\infty)}(x)$
 
 \underline{Media} $\frac{1}{\lambda}$
 
@@ -253,7 +249,7 @@ La discretizzazione di una esponenziale è una geometrica
 
 \underline{Funzione di ripartizione} $F_X(x)=1-e^{-\lambda x}$
 
-\underline{Funzione caratteristica} $\Phi_X(t)=\left(1-\frac{it}{\lambda}\right)^{-1}$
+\underline{Funzione caratteristica} $\Phi_X(t)=\frac{\lambda}{\lambda-it}$
 
 \underline{Commenti} Descrive il tempo di attesa tra due eventi successivi
 
@@ -271,6 +267,8 @@ con $\Gamma(\alpha)=\int_0^{+\infty} y^{\alpha-1}e^{-y}\,dy$
 \underline{Varianza} $\frac{\alpha}{\lambda^2}$
 
 \underline{Funzione caratteristica} $\Phi_X(t)=\left(1-\frac{it}{\lambda}\right)^{-k}$
+
+\underline{Commenti} Se $\alpha$ è intero si parla di Erlang
 
 \end{multicols}
 
@@ -362,12 +360,49 @@ e in particolare $\Phi_X^{(k)}(0)=i^k \mathbb{E}\left[X^k\right]$
 
 \item $X_j$ indipendenti \quad $\Leftrightarrow$ \quad $\Phi_{\underline{X}}(\underline{t})=\prod_{j=1}^N \Phi_{X_j}(t_j)$ \quad $\forall \underline{t}\in \mathbb{R}^N$
 
+\item $\Phi_{T}$ è integrabile $\Rightarrow$ $T$ è assolutamente continua e $f_T(x)=\frac{1}{2\pi}\int_{-\infty}^{+\infty}e^{-itx}\Phi_T(t)\,dt$
+
+\end{itemize}
+
+\pagebreak
+
+\textbf{Condizionamento}
+
+\begin{itemize}
+
+\item \underline{Caso discreto}
+
+\begin{itemize}
+
+\item $f_{X|Y=y} = \frac{f_(X,Y)(x,y)}{f_Y(y)}$ se $f_Y(y)\neq 0$ è detta \textit{densità discreta di $X$ condizionata all'evento ($Y=y$)} e definisce una \textit{legge} $\mathbb{P}_{X|Y=y}(A) = \displaystyle\sum_{x\in A}f_{X|Y=y}(x) \quad \forall A\in \mathcal{B}(\mathbb{R})$
+
+\item $\mathbb{E}[X|Y=y] = \displaystyle\sum_{x\in X(\Omega)}xf_{X|Y=y}(x) = h(y)$ \textit{attesa di $X$ condizionata a $(Y=y)$} , $h: \mathbb{R}\rightarrow \mathbb{R}$ misurabile se la serie è assolutamente convergente
+
+\item $h(Y)=h\,\circ\,Y = \mathbb{E}[X|Y]$ \textit{attesa di X condizionata a Y} (N.B. variabile aleatoria!) $\sigma(Y)$-misurabile
+
+\item $\int_A \mathbb{E}[X|Y]\,d \mathbb{P} = \int_AX\,d \mathbb{P}\Rightarrow \mathbb{E}[\mathbb{E}[X|Y]\boldsymbol{1}_A] = \mathbb{E}[X \boldsymbol{1}_A]$\quad$\forall A \in \sigma(Y)$, $A=Y^{-1}(B)$ con $B\in \mathcal{B}(\mathbb{R})$
+
+Questa caratterizzazione si può estendere ad una qualsiasi variabile aleatoria $Y$ e più in generale si può estendere sostituendo $\sigma(Y)$ con una $\sigma$-algebra generica
+
+\end{itemize}
+
+\item \underline{Attesa condizionata rispetto a una $\sigma$-algebra} 
+
+\begin{itemize}
+
+\item $f_{(X,Y)}(x,y) = f_{X|Y=y}(x)f_Y(y)$ q.o.
+	
+\item $X\ind Y \Leftrightarrow f_{X|Y=y}(x)=f_X(x)$ q.o.
+
+\item Calcolo di $\mathbb{E}[X|Y]$: $f_{X|Y=y}\rightarrow h(y)=\mathbb{E}[X|Y=y] = \int_\mathbb{R}xf_{X|Y=y}(x)\,dx \rightarrow h\circ Y = h(Y)=\mathbb{E}[X|Y]$
+
+\end{itemize}
+
 \end{itemize}
 
 
 
-
-\huge aggiornato alla lezione 15
+\huge aggiornato alla lezione 17
 
 \end{document}
 
