@@ -1,4 +1,4 @@
-   \documentclass[openany]{book} % oppure \openany in mezzo al libro
+\documentclass[openany]{book} % oppure \openany in mezzo al libro
 \usepackage[utf8]{inputenc}
 \usepackage[italian]{babel}
 \usepackage[T1]{fontenc}
@@ -11,6 +11,11 @@
 \usepackage[none]{hyphenat}
 \usepackage{blindtext}
 \usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage{old-arrows}
+\usepackage{wrapfig}
+
+\DeclareMathSymbol{\nrightarrow} {\mathrel}{AMSb}{"39}
 
 
 \sloppy
@@ -34,6 +39,8 @@
 
 \setlength{\parindent}{0em}
 %\setlength{\parskip}{0.2em}
+
+\setlist{nosep}
 
 \begin{document}
 
@@ -105,8 +112,6 @@ $Y\sim\chi^2(n)$ Chi quadro con $n$ gradi di libertà
 
 \end{itemize}
 
-\subsection*{Distribuzioni}
-
 \begin{multicols}{2}
 
 \textbf{Bernoulli} $(p)$
@@ -122,8 +127,7 @@ $Y\sim\chi^2(n)$ Chi quadro con $n$ gradi di libertà
 \underline{Funzione caratteristica} $\Phi_X(t)= 1-p+pe^{it}$
 
 \underline{Commenti} Fallimento e successo
-
-\columnbreak
+\\
 
 \textbf{Binomiale} $(n,p)$  
 
@@ -136,8 +140,7 @@ $Y\sim\chi^2(n)$ Chi quadro con $n$ gradi di libertà
 \underline{Funzione caratteristica} $\Phi_X(t)=((1-p)+pe^{it})^n$
 
 \underline{Commenti} Numero di successi in $n$ lanci con probabilità $p$ di successo
-
-\columnbreak
+\\
 
 \textbf{Multinomiale} $(n,p_1,\dots,p_N)$
 
@@ -288,8 +291,6 @@ $\Gamma(n,\lambda),\,n\in \mathbb{N},$ è una \textit{distribuzione di Erlang}, 
 
 $X_1,\dots,X_n$ variabili aleatorie indipendenti con distribuzione $\Gamma(\alpha_i,\lambda)\Rightarrow \sum_{i=1}^nX_i\sim\Gamma(\alpha_1+\dots+\alpha_n,\lambda)$
 
-\pagebreak
-
 \textbf{Trasformazione di variabili e vettori aleatori}
 
 \begin{itemize}
@@ -364,8 +365,6 @@ e in particolare $\Phi_X^{(k)}(0)=i^k \mathbb{E}\left[X^k\right]$
 
 \end{itemize}
 
-\pagebreak
-
 \textbf{Condizionamento}
 
 \begin{itemize}
@@ -396,13 +395,203 @@ Questa caratterizzazione si può estendere ad una qualsiasi variabile aleatoria 
 
 \item Calcolo di $\mathbb{E}[X|Y]$: $f_{X|Y=y}\rightarrow h(y)=\mathbb{E}[X|Y=y] = \int_\mathbb{R}xf_{X|Y=y}(x)\,dx \rightarrow h\circ Y = h(Y)=\mathbb{E}[X|Y]$
 
-\end{itemize}
+\item $\mathbb{E}[Y]=\mathbb{E}[\mathbb{E}[Y|X]]$
+
+\item $\text{Var}(Y)=\mathbb{E}[\text{Var}(Y|X)] + \text{Var}(\mathbb{E}[Y|X])$
+
+\item $\text{Var}(Y|X)=\mathbb{E}[Y^2|X]-(\mathbb{E}[Y|X])^2$
 
 \end{itemize}
 
+\end{itemize}
 
+\textbf{Convergenza quasi ovunque (quasi certamente)} $\mathbb{P}(\{\omega\in\Omega:X_n(\omega) \nrightarrow X(\omega)\}) = \mathbb{P}(X_N\nrightarrow X)=0$
 
-\huge aggiornato alla lezione 17
+$X_n \overset{q.o.}\rightarrow X\quad X_n \overset{q.c.}\rightarrow X$
+
+\textbf{Convergenza in probabilità (in misura)} $\mathbb{P}(\{\omega\in\Omega:|X_n(\omega)-X(\omega)|>\epsilon)=\mathbb{P}(|X_n-X|>\epsilon)\underset{n \rightarrow \infty} \rightarrow 0$
+
+$X_n\overset {\mathbb{P}}\rightarrow X$
+
+\textbf{Disuguaglianza di Markov} $X$ v.a., $X\in L^1(\Omega,\mathcal{F},\mathbb{P})$ e $X\geq 0$ q.o., allora $\forall\epsilon>0 \quad \mathbb{P}(X>\epsilon)\leq \frac{\mathbb{E}[X]}{\epsilon}$
+
+\textbf{Disuguaglianza di Cebicev} $X$ v.a., $X\in L^2(\Omega,\mathcal{F},\mathbb{P})$, allora $\forall \epsilon>0 \quad \mathbb{P}(|X-\mathbb{E}[X]|>\epsilon)\leq \frac{\text{Var}(X)}{\epsilon^2}$
+
+\pagebreak
+
+\textbf{Convergenza in norma $L^p$} $X_N,\,X\in L^p\quad ||X_n-X||_{L^p}\underset {n \rightarrow\infty}\rightarrow 0$, ovvero $\mathbb{E}[|X_n-X|^p]\underset {n \rightarrow\infty}\rightarrow 0$ 
+
+$X_n\overset {L^p} \rightarrow X$ \quad (N.B. $||X||_{L^p}=(\mathbb{E}[|X|^p])^{\frac{1}{p}}$)
+
+\begin{enumerate}
+
+\item $p \geq q \geq 1$ \quad $X_n\overset {L^p} \rightarrow X \Rightarrow X_n\overset {L^q} \rightarrow X$
+
+\item $X_n\overset {L^1} \rightarrow X \Rightarrow \mathbb{E}[X_n]\underset {n \rightarrow\infty} \rightarrow \mathbb{E}[X]$
+
+\item $X_n\overset {L^p} \rightarrow X,$ $p\geq 1 \Rightarrow \mathbb{E}[|X_n|^p]\underset {n \rightarrow\infty} \rightarrow \mathbb{E}[|X|^p]$, ovvero $||X_n||_{L^p}\rightarrow||X||_{L^p}$
+
+in particolare se converge in $L^2$, converge anche in $L^1$, quindi $\mathbb{E}[X_n]\underset {n \rightarrow\infty} \rightarrow \mathbb{E}[X]$, $\mathbb{E}[X_n^2]\underset {n \rightarrow\infty} \rightarrow \mathbb{E}[X^2]$ $\Rightarrow$ $\text{Var}(X_n)\rightarrow \text{Var}(X)$
+
+\item $X_n\overset {L^2} \rightarrow a,$ $a\in \mathbb{R} \Leftrightarrow \mathbb{E}[X_n]\rightarrow a, \text{Var}(X_n)\rightarrow 0$
+
+\end{enumerate}
+
+\textbf{Caratterizzazione della convergenza in probabilità} \quad $X_n\overset {\mathbb{P}}\rightarrow X \Leftrightarrow \mathbb{E}\left[\frac{|X_n-X|}{|X_n-X|+1}\right]\underset {n \rightarrow\infty}\rightarrow 0$
+
+\begin{itemize}
+
+\item $X_n\overset {L^p} \rightarrow X,$ $p\geq 1 \Rightarrow X_n\overset {\mathbb{P}}\rightarrow X$
+
+\item $X_n\overset {q.o.} \rightarrow X \Rightarrow X_n\overset {\mathbb{P}}\rightarrow X$
+
+\item $X_n\overset {\mathbb{P}}\rightarrow X$ e $|X_n|\leq Y$ $\forall n\in \mathbb{N}$ con $Y\in L^p \Rightarrow X_n\overset {L^p}\rightarrow X$
+
+\item $X_n\overset {\mathbb{P}}\rightarrow X$ e $|X_n|\leq M$ $\forall n\in \mathbb{N}$ con $M\in \mathbb{R}$ (uniformemente limitata) $ \Rightarrow X_n\overset {L^p}\rightarrow X\, \forall p\geq 1$
+
+\item $X_n\overset {\mathbb{P}}\rightarrow X \Rightarrow \exists$ una sottosuccessione $(X_{n_k})_k$ t.c. $X_{n_k}\overset {q.c.}\rightarrow X$
+
+\end{itemize}
+
+\textbf{Continuità}
+
+$f:\mathbb{R}\rightarrow \mathbb{R}$ continua
+
+\begin{enumerate}[label=({\alph*})]
+
+\item $X_n\overset {q.o.}\rightarrow X \Rightarrow f(X_x) \overset {q.o.}\rightarrow f(X)$
+
+\item $X_n\overset {\mathbb{P}}\rightarrow X \Rightarrow f(X_x) \overset {\mathbb{P}}\rightarrow f(X)$
+
+\end{enumerate}
+
+\textbf{Legge debole dei grandi numeri (convergenza in probabilità)} $(X_n)_{n\geq 1}$ successione di v.a. i.i.d. t.c. $X_n\in L^2(\Omega,\mathcal{F},\mathbb{P})$ $\forall n\geq 1$, $\mu=\mathbb{E}[X_n]$, $\overline{X}_n=\frac{1}{n}\sum_{i=1}^nX_i$ (\textit{media campionaria}) $\Rightarrow\overline {X}_N\overset {\mathbb{P}}\rightarrow\mu$
+
+\textbf{Legge forte dei grandi numeri} Nelle stesse ipotesi precedenti $\overline {X}_n \rightarrow\mu$ q.o. e in $L^2$
+
+\textbf{Legge forte dei grandi numeri di Kolmogorov} $(X_n)_{n\geq 1}$ successione di v.a. i.i.d., $X_n\in L^1(\Omega,\mathcal{F},\mathbb{P})$, 
+
+$\overline {X}_n \rightarrow\mu$ q.o. e in $L^1$
+
+\textbf{Convergenza in legge} 
+
+\begin{itemize}
+
+\item $(\mu_n)_{n\in \mathbb{N}}$ e $\mu$ misure finite su $(\mathbb{R},\mathcal{B}(\mathbb{R}))$, la successione $(\mu_n)_{n\in \mathbb{N}}$ \textit{converge debolmente} a $\mu$ se $\forall f \in C_b(\mathbb{R})$ (continua e limitata) $\int_{\mathbb{R}} f\,d\mu_n\underset {n \rightarrow\infty}\rightarrow\int_{\mathbb{R}}f\,d\mu$ \quad $\mu_n\overset w \rightarrow \mu$ , $\mu_n\rightharpoonup\mu$
+
+\item $(X_n)_{n\geq 1}$ e $X$ v.a. reali definite su $(\Omega_n,\mathcal{F}_n,\mathbb{P}_n)_{n\geq 1}$ e $(\Omega,\mathcal{F},\mathbb{P})$, la successione $(X_n)_{n\geq 1}$ \textit{converge in legge (in distribuzione)} a $X$ se la successione delle leggi $(\mathbb{P}_{X_n})_{n\geq 1}$ converge debolmente a $\mathbb{P}_X$, ovvero $\forall f \in C_b(\mathbb{R})$ $\int_{\mathbb{R}}f\,d \mathbb{P}_{X_n}\underset{n \rightarrow\infty}{\rightarrow}\int_{\mathbb{R}}f\,d \mathbb{P}_X \Leftrightarrow \int_{\Omega_n}f(X_n)\,d \mathbb{P}_n\underset{n \rightarrow\infty}{\rightarrow}\int_{\Omega}f(X)\,d \mathbb{P} \Leftrightarrow \mathbb{E}_n[f(X_n)]\underset{n \rightarrow\infty}{\rightarrow}\mathbb{E}[f(X)]$ \quad $X_n \overset{L}{\rightarrow}X$
+
+Non è necessario che tutte le v.a. siano definite su un unico spazio di probabilità, quindi non si può paragonare con le altre convergenze, MA se le v.a. sono tutte definite sullo stesso spazio allora è la convergenza più debole
+
+\item $(X_n)_{n\geq 1}$ e $X$ v.a. definite su $(\Omega,\mathcal{F},\mathbb{P})$ a valori in $\mathbb{R}$, $X_n \overset{\mathbb{P}}{\rightarrow}X\Rightarrow X_n \overset{L}{\rightarrow}X$
+
+\item $(X_n)_{n\geq 1}$ e $X$ v.a. definite su $(\Omega,\mathcal{F},\mathbb{P})$ a valori in $\mathbb{R}$, $X=a$ q.o. (N.B. più restrittivo), $X_n \overset{L}{\rightarrow}X\Rightarrow X_n \overset{\mathbb{P}}{\rightarrow}X$
+
+\end{itemize}
+
+\textbf{Criteri di convergenza in legge}
+
+\begin{enumerate}
+
+\item $X_n \overset{L}{\rightarrow}X \Leftrightarrow F_n(x)\underset{n \rightarrow\infty}{\rightarrow}F(x)$ $\forall x$ punto di continuità di $F$ \textit{funzione di ripartizione} (N.B. nei punti di discontinuità di $F$ può non esserci la convergenza)
+
+\item \underline{Teorema di Paul Lévy} 
+
+\begin{enumerate}
+
+\item $X_n \overset{L}{\rightarrow}X \Rightarrow \Phi_n(t)\rightarrow\Phi(t)\,\forall t\in \mathbb{R}$
+
+\item $\Phi_n(t)\rightarrow\phi(t)\,\forall t\in \mathbb{R}$ e $\phi$ è continua in 0 allora $\exists X$ v.a. reale con \textit{funzione caratteristica} $\Phi(t)=\phi(t)$ e $X_n \overset{L}{\rightarrow}X$
+
+\end{enumerate}
+
+\end{enumerate}
+
+\textbf{Proprietà convergenza in legge}
+
+\begin{enumerate}
+
+\item $f:\mathbb{R}\rightarrow \mathbb{R}$ continua $X_n \overset{L}{\rightarrow}X \Rightarrow f(X_n) \overset{L}{\rightarrow}f(X)$
+
+\item $\left\{\begin{array}{ll}X_n \rightarrow X & q.o.\,(L^p,\mathbb{P})\\ Y_n \rightarrow Y & q.o.\,(L^p,\mathbb{P})\end{array} \right. \Rightarrow X_n+Y_n \rightarrow X+Y\,q.o.\,(L^p,\mathbb{P})$ MA non è vero in generale per la convergenza in legge:
+
+\begin{enumerate}
+
+\item $\left\{\begin{array}{ll}X_n \overset{L}\rightarrow X & \text{ma anche }q.o.\,(L^p,\mathbb{P})\\ Y_n\overset{L}\rightarrow Y & \text{ma anche }q.o.\,(L^p,\mathbb{P})\end{array} \right. \Rightarrow X_n+Y_n \rightarrow X+Y\,q.o.\,(L^p,\mathbb{P})$ e quindi in legge
+
+\item $X_n \overset{L}\rightarrow X\quad Y_n \overset{L}\rightarrow Y\quad X_n\ind Y_n\,\forall n\in \mathbb{N}\quad X\ind Y \Rightarrow X_n+Y_n\overset{L}{\rightarrow}X+Y$
+
+\item \underline{Teorema di Slutsky} $X_n \overset{L}\rightarrow X\quad Y_n \overset{L}\rightarrow a\, (\Leftrightarrow Y_n \overset{\mathbb{P}}{\rightarrow}a)$ , allora:
+
+\begin{enumerate}
+
+\item $X_n+Y_n \overset{L}{\rightarrow}X+a$
+
+\item $X_nY_n \overset{L}{\rightarrow}Xa$
+
+\item $\frac{X_n}{Y_n} \overset{L}{\rightarrow}\frac{X}{a}$ (se ben definite)
+
+\end{enumerate}
+
+\end{enumerate}
+
+\end{enumerate}
+
+\textbf{Teorema limite centrale} $(X_n)_{n\in \mathbb{N}}$ successione di v.a. reali, i.i.d e $X_n\in L^2(\Omega,\mathcal{F},\mathbb{P})\,\forall n\geq 1$ , $\mu=\mathbb{E}[X_n]$, $\sigma^2=\text{Var}(X_n)$ , $S_n=\sum_{i=1}^nX_i$ e $S_n^*=\frac{S_n-n\mu}{\sqrt{n\sigma^2}}$ la sua \textit{standardizzazione} $\Rightarrow S_n^*\overset{L}{\rightarrow}N$ con $N\sim \mathcal{N}(0,1)$
+
+\begin {wraptable}{l}{8cm}
+
+\begin{tabular}{c|c}
+
+\textbf{Osservazioni} & Per $n$ grande \\
+
+\hline
+
+$S_n^*=\frac{S_n-n\mu}{\sqrt{n\sigma^2}}\overset{L}{\rightarrow}\mathcal{N}(0,1)$ & $S_n^*\approx \mathcal{N}(0,1)$ \\
+
+$\frac{1}{\sqrt{n}}(S_n-n\mu)\overset{L}{\rightarrow}\mathcal{N}(0,\sigma^2)$ & $S_n\approx \mathcal{N}(n\mu,n\sigma^2)$ \\
+
+$\sqrt{n}(\overline X_n-\mu)\overset{L}{\rightarrow}\mathcal{N}(0,\sigma^2)$ & $\overline X_n\approx \mathcal{N}(\mu,\frac{\sigma^2}{n})$ \\
+
+\end{tabular}
+
+\end {wraptable}
+
+\hfill
+
+\hfill
+
+\underline{\textbf{NON FARE}}
+
+$S_n\overset{L}{\rightarrow}\mathcal{N}(n\mu,n\sigma^2)$
+
+$\overline X_n \overset{L}{\rightarrow}\mathcal{N}(\mu,\frac{\sigma^2}{n})$
+
+il limite $n \rightarrow \infty$ deve comparire solo a sinistra
+
 
 \end{document}
 
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
