@@ -14,6 +14,7 @@
 \usepackage{enumitem}
 \usepackage{old-arrows}
 \usepackage{wrapfig}
+\usepackage{pdfpages}
 
 \DeclareMathSymbol{\nrightarrow} {\mathrel}{AMSb}{"39}
 
@@ -50,7 +51,7 @@
 \large Formulario
 \end{center}
 
-$e^{ix} = \cos(x)+i\sin(x)$
+$e^{ix} = \cos(x)+i\sin(x) \quad e^x = \underset{n \rightarrow\infty}{\text{lim}}\left(1+\frac{x}{n}\right)^n \quad e^x=\sum_{n=0}^\infty \frac{x^n}{n!}$
 
 \textbf{Disposizioni con ripetizione} $D^R_{n.k}=n^k$
 
@@ -213,7 +214,7 @@ $p_{N+1}=1-\sum_{i=1}^Np_i$ ; la marginale della multinomiale è una binomiale
 
 \underline{Varianza} $\frac{(b-a)^2}{12}$
 
-\underline{Funzione di ripartizione} $F_X(x)=\frac{x-a}{b-a}$
+\underline{Funzione di ripartizione} $F_X(x)=\frac{x-a}{b-a}\boldsymbol{1}_{(a,b)}(x)+\boldsymbol{1}_{[b,+\infty)}(x)$
 
 \underline{Funzione caratteristica} $\Phi_X(t)=\frac{e^{ibt}-e^{iat}}{ibt-iat}$
 \\
@@ -271,7 +272,9 @@ con $\Gamma(\alpha)=\int_0^{+\infty} y^{\alpha-1}e^{-y}\,dy$
 
 \underline{Funzione caratteristica} $\Phi_X(t)=\left(1-\frac{it}{\lambda}\right)^{-k}$
 
-\underline{Commenti} Se $\alpha$ è intero si parla di Erlang
+\underline{Commenti} Se $\alpha$ è intero si parla di Erlang 
+
+$cG(\alpha, \lambda)\sim G(\alpha,\frac{\lambda}{c})$ , $\alpha,\lambda,c>0$
 
 \end{multicols}
 
@@ -569,6 +572,149 @@ $\overline X_n \overset{L}{\rightarrow}\mathcal{N}(\mu,\frac{\sigma^2}{n})$
 
 il limite $n \rightarrow \infty$ deve comparire solo a sinistra
 
+.
+
+\textbf{Standardizzazione Gaussiana} $\frac{X-\mu}{\sigma}$ , \quad$X\sim\mathcal{N}(\mu,\sigma^2)$ e $\mu = \mathbb{E}[X]$ , $\sigma^2=\text{Var}(X)$
+
+\rule{\textwidth}{0.4pt}
+
+\textbf{Normale multivariata standard} $X_i \overset{i.i.d}{\sim}\mathcal{N}(0,1)$ , $i=1,\dots,k$ , $\boldsymbol{X}=(X_1,\dots,X_k)^T$ , $\boldsymbol{X}\sim \mathcal{N}_k(\boldsymbol{0},\boldsymbol{I}_k)$
+
+\underline{Densità congiunta} $f(\boldsymbol{x})=(2\pi)^{-\frac{k}{2}}\exp(-\frac{\boldsymbol{x}^T \boldsymbol{x}}{2})\,\forall \boldsymbol{x}\in \mathbb{R}^k$
+
+\underline{Funzione caratteristica} $\phi_{\boldsymbol{X}}(\boldsymbol{t})=\exp(-\frac{\boldsymbol{t}^t \boldsymbol{t}}{2})$
+
+\textbf{Normale multivariata} $\boldsymbol{\mu}\in \mathbb{R}^n$ , $\boldsymbol{A}\in n_{n\times k}(\mathbb{R})$ , $\boldsymbol{Y} = \boldsymbol{\mu}+\boldsymbol{AX}\Rightarrow \boldsymbol{Y}\sim \mathcal{N}_n(\boldsymbol{\mu},\boldsymbol{\Sigma})$ dove $\boldsymbol{\Sigma}=\boldsymbol{AA}^T\in m_{n\times n}(\mathbb{R})$ \textit{matrice di varianza e covarianza} e $\boldsymbol{\mu}$ \textit{vettore delle medie}
+
+\underline{Funzione caratteristica} $\phi_{\boldsymbol{Y}}(\boldsymbol{t})=\exp(i \boldsymbol{t}^T \boldsymbol{\mu}-\frac{1}{2}|\boldsymbol{A}^T \boldsymbol{t}|^2)$ dove $|\boldsymbol{A}^T \boldsymbol{t}|^2 = \boldsymbol{t}^T \boldsymbol{\Sigma t}$
+
+\textbf{Proprietà matrice di covarianza} è simmetrica e semi-definita positiva ($\boldsymbol{u}^T \boldsymbol{\Sigma u}\geq 0$ oppure autovalori $\geq 0$)
+
+\textbf{Radice principale} $\boldsymbol{\Sigma}$ matrice simmetrica e semi-definita positiva di dimensione $n\times n \Rightarrow \exists \boldsymbol{A}$ simmetrica e semi-definita positiva di dimensione $n\times n$ t.c. $\boldsymbol{\Sigma}=\boldsymbol{AA}^T=\boldsymbol{A}^2$ \quad $\boldsymbol{\Sigma}$ invertibile $\Rightarrow \boldsymbol{A}$ invertibile
+
+Se $\boldsymbol{\Sigma}$ è invertibile, $\boldsymbol{Y}$ è ass. continua e $f_{\boldsymbol{Y}}(\boldsymbol{y})=(2\pi)^{-\frac{n}{2}}\text{det}(\boldsymbol{\Sigma})^{-\frac{1}{2}}\exp(-\frac{(\boldsymbol{y}-\boldsymbol{\mu})^T \boldsymbol{\Sigma}^{-1}(\boldsymbol{y}-\boldsymbol{\mu})}{2})$
+
+N.B. se $\boldsymbol{\Sigma}$ non è invertibile, $\boldsymbol{Y}$ non è ass. cont. ed è \textit{degenere}
+
+\textbf{Indipendenza normale multivariata} $\boldsymbol{X}\sim \mathcal{N}_n(\boldsymbol{\mu},\boldsymbol{\Sigma})$ 
+
+$\boldsymbol{X}=\left(\begin{array}{c}\boldsymbol{X}_A \\ \boldsymbol{X}_B\end{array}\right)$ , $\boldsymbol{\mu}=\left(\begin{array}{c}\boldsymbol{\mu}_A \\ \boldsymbol{\mu}_B\end{array}\right)$ , $\boldsymbol{\Sigma}=\left(\begin{array}{cc}\boldsymbol{\Sigma}_A & \boldsymbol{\Sigma}_{AB}\\ \boldsymbol{\Sigma}_{AB}^T & \boldsymbol{\Sigma}_B\end{array}\right)$ , $\boldsymbol{X}_A \ind \boldsymbol{X}_B \Leftrightarrow \boldsymbol{\Sigma}_{AB} = \boldsymbol{0}$
+
+\textbf{Condizionamento normale multivariata} $\boldsymbol{X}_A|\boldsymbol{X}_B=\boldsymbol{x}_B$ è ancora una normale multivariata con 
+
+$\boldsymbol{\mu}_{A|B} = \boldsymbol{\mu}_A+\boldsymbol{\Sigma}_{AB}\boldsymbol{\Sigma}^{-1}_B(\boldsymbol{x}_B-\boldsymbol{\mu}_B)$ \quad $\boldsymbol{\Sigma}_{A|B} = \boldsymbol{\Sigma}_{A}-\boldsymbol{\Sigma}_{AB}\boldsymbol{\Sigma}^{-1}_B\boldsymbol{\Sigma}_{BA}$
+
+\textbf{Chi-quadro} $Y \in \mathbb{R}^+$ assolutamente continua, $n\in \mathbb{N}^*$ \textit{gradi di libertà}, $Y\sim\chi^2(n)$
+
+\underline{Densità} $f(y)=2^{-\frac{n}{2}}\Gamma(\frac{n}{2})^{-1}y^{\frac{n}{2}-1}\exp(-\frac{y}{2})$ \qquad \underline{Media} $n$ \qquad \underline{Varianza} $2n$
+
+\begin{itemize}
+
+\item $X_1,\dots,X_n \overset{i.i.d.}{\sim}\mathcal{N}(0,1)\Rightarrow Q=\sum_{i=1}^nX_i^2\sim\chi^2(n)$
+
+\item $\chi^2(n_1)+\chi^2(n_2)\sim\chi^2(n_1+n_2)$
+
+\item $\chi^2(n)\sim G(\frac{n}{2},\frac{1}{2})$
+
+\item $X_1,\dots,X_n$ indipendenti e $X_i\sim\mathcal{N}(\mu_i,1)$ , $Q=\sum_{i=1}^nX_i^2$ è distribuita come una \textit{chi-quadro non centrata} con $n$ gradi di libertà e \textit{parametro di non centralità} $\lambda=\sum_{i=1}^n\mu_i^2$ e si scrive $Q\sim\chi^2_\lambda(n)$ , con \underline{media} $n+\lambda$ e \underline{varianza} $2(n+2\lambda)$
+
+\item $X\sim U(0,1)\Rightarrow-2\log(X)\sim\chi^2(2)$
+
+\end{itemize}
+
+\textbf{T di Student} $Y\in \mathbb{R}$ assolutamente continua, $n\in \mathbb{R}^+$ \textit{gradi di libertà}, $Y\sim t(n)$
+
+\underline{Densità} $f(y)=\frac{\Gamma(\frac{n+1}{2})}{\sqrt{n\pi}\Gamma(\frac{n}{2})}(1+\frac{y^2}{n})^{-\frac{n+1}{2}}$ \qquad \underline{Media} 0 se $n>0$ \qquad \underline{Varianza} $\frac{n}{n-2}$ se $n>2$, infinità se $1<n\leq2$ , indefinita altrimenti; la distribuzione è simmetrica e unimodale
+
+\begin{itemize}
+
+\item $Y= \frac{Z}{\sqrt{\frac{X}{n}}}$ con $Z\sim \mathcal{N}(0,1)$ , $X\sim\chi^2(n)$ , $Z\ind X$
+
+se $Z\sim \mathcal{N}(\mu,1)$ , $Y$ è distribuita come una T non centrata con \textit{parametro di non centralità} $\mu$, $Y\sim t_\mu(n)$
+
+\item se $n$ è abbastanza grande ($>80)$ la T di Student può essere approssimata da una normale standard
+
+\end{itemize}
+
+\textbf{F di Fisher Snedecor} $Y\in \mathbb{R}^+$ assolutamente continua, $n_1,n_2\in \mathbb{R}^+$ \textit{gradi di libertà}, $Y\sim F(n_1,n_2)$
+
+\underline{Densità} $f(y)=\frac{\sqrt{\frac{(n_1y)^nn_2^{n_2}}{(n_1y+n_2)^{n_1+n_2}}}}{yB(\frac{n_1}{2},\frac{n_2}{2})}$ \qquad \underline{Media} $\frac{n_2}{n_2-2}$ se $n_2>2$ , altrimenti indefinita \qquad \underline{Varianza} $\frac{2n_2^2(n_1+n_2-2)}{n_1(n_2-2)^2(n_2-4)}$ se $n_2>4$ , altrimenti indefinita
+
+\begin{itemize}
+
+\item $Y=\frac{\frac{X_1}{n_1}}{\frac{X_2}{n_2}}$ , $X _1\sim\chi^2(n_1)$ , $X_2\sim\chi^2(n_2)$ , $X_1\ind X_2$
+
+\item $X\sim t(n) \Rightarrow X^2\sim F(1,n)$ e $X^{-2}\sim F(n,1)$
+
+\item $X\sim B(\frac{n_1}{2},\frac{n_2}{2}) \Rightarrow \frac{n_2X}{n_1(1-X)}\sim F(n_1,n_2)$
+
+\end{itemize}
+
+\textbf{Statistica} una funzione $T(X_1,\dots,X_n)$ del \textit{campione} $(X_1,\dots,X_n)$
+
+\begin{itemize}
+
+\item \underline{Media campionaria} $\overline{X}=\sum_{i=1}^n \frac{X_i}{n}$
+
+\item \underline{Varianza campionaria} $S^2=\sum_{i=1}^n \frac{(X_1-\overline {X})^2}{n-1}$ N.B. $n-1$ al denominatore
+
+\item $(\overline {X},S^2)$
+
+\item \underline{Massimo campionario} $X_{(n)}=\max(X_1,\dots,X_n)$
+
+\item \underline{Vettore campionario ordinato} $(X_1,\dots,X_n)=\text{sort}(X_1,\dots,X_n)$ \quad $X_{(n)}:X_{(1)}\leq\dots\leq X_{(n)}$
+
+\item \underline{Conteggio valori minori o uguali} $C(x)=\sum_{i=1}^nI(X_i\leq x)$ , dove $I$ è la funzione che assume valore 1 se l'argomento è vero e 0 altriment
+
+\underline{Funzione di ripartizione empirica} $\hat {F}(x)=\frac{C(x)}{n}$
+
+\item \underline{Quantili} $\hat {Q}(u)=\inf\{x:u\leq\hat {F}(x)\}$
+
+$\hat {Q}(0.5)$ \textit{mediana} \quad $\hat {Q}(0.25)$ \textit{primo quartile} \quad $\hat {Q}(0.75)$ \textit{terzo quartile}
+
+\end{itemize}
+
+\textbf{Caso normale} $X_1,\dots,X_n \overset{i.i.d.}{\sim}\mathcal{N}(\mu,\sigma^2)$
+
+\begin{enumerate}
+
+\item $\overline {X}$ e $S^2$ sono indipendenti
+
+\item $\overline{X}\sim \mathcal{N}(\mu,\frac{\sigma^2}{n})$
+
+\item $\frac{(n-1)S^2}{\sigma^2}\sim\chi^2(n-1)$
+
+\item $\frac{\sqrt{n}(\overline{X}-\mu)}{S}\sim t(n-1)$
+
+\end{enumerate}
+
+\textbf{Caso due normali} $X_1,\dots,X_m \overset{i.i.d.}{\sim}\mathcal{N}(\mu_x,\sigma_x^2)$ e $Y_1,\dots,Y_n \overset{i.i.d.}{\sim}\mathcal{N}(\mu_y,\sigma^2_y)$
+
+\begin{enumerate}
+
+\item $\overline{X}-\overline{Y}$ e $\frac{S_x^2}{S_y^2}$ sono indipendenti
+
+\item $\overline{X}-\overline{Y}\sim \mathcal{N}(\mu_x-\mu_y,\frac{\sigma_x^2}{m}+\frac{\sigma_y^2}{n})$ 
+
+\item $\frac{\sigma_y^2S_x^2}{\sigma_x^2S_y^2}\sim F(m-1,n-1)$
+
+\end{enumerate}
+
+\textbf{Metodo delta univariato} $(X_n)_{n\geq 1}$ successione di variabili asintoticamente normali $\sqrt{n}(X_n-\theta)\overset{L}{\rightarrow}\mathcal{N}(0,\sigma^2(\theta))$, $g$ funzione con derivata continua finita e diversa da 0 in un intorno di $\theta$ 
+
+$\Rightarrow \sqrt {n}(g(X_n)-g(\theta))\overset{L}{\rightarrow}\mathcal{N}(0,(g'(\theta))^2\sigma^2(\theta))$ è asintoticamente normale
+
+\textbf{Metodo delta multivariato} $(\boldsymbol{X}_n)_{n\geq 1}$ successione di variabili t.c. $\sqrt{n}(\boldsymbol{X}_n-\boldsymbol{\theta})\overset{L}{\rightarrow}\mathcal{N}_n(0,\boldsymbol{\Sigma})$ , $g:\mathbb{R}^n \rightarrow \mathbb{R}^k$ con derivate parziali continue in un intorno di $\boldsymbol{\theta}$ $\Rightarrow \sqrt {n}(g(\boldsymbol{X}_n)-g(\boldsymbol{\theta}))\overset{L}{\rightarrow}\mathcal{N}_n(\boldsymbol{0},\boldsymbol{J\Sigma J}^T)$ dove $\boldsymbol{J}$ è la matrice jacobiana
+
+\textbf{Statistica sufficiente} Se $p(\boldsymbol{x}|\theta)$ è legge di $\boldsymbol{X}$ e $q(t|\theta)$ è legge di $T(\boldsymbol{X})$, allora $T(\boldsymbol{X})$ è \textit{sufficiente} per $\theta$ se $\forall \boldsymbol{x}\in \mathcal{X}$ $\frac{p(\boldsymbol{x}|\theta)}{q(t|\theta)}$ non dipende da $\theta$
+
+\textbf{Teorema di fattorizzazione} Sia $f(\boldsymbol{x}|\theta)$ la congiunta di un campione $\boldsymbol{X}$. Una statistica $T(\boldsymbol{X})$ è sufficiente per $\theta$ $\Leftrightarrow \exists \,g(t|\theta)\,,\,h(\boldsymbol{x})$ t.c. $\forall \boldsymbol{x}\in \mathcal{X}\,,\,\forall \theta\in\Theta$ , $f(\boldsymbol{x}|\theta)=g(T(\boldsymbol{X})|\theta)h(\boldsymbol{x})$
+
+\textbf{Minimalità} $(\frac{f(\boldsymbol{x}|\theta)}{f(\boldsymbol{y}|\theta)}=C_{x,y}\Leftrightarrow T(\boldsymbol{x})=T(\boldsymbol{y}))\Rightarrow T$ è \textit{sufficiente} e \textit{minimale}
+
+\includepdf[pages=-]{tavola normale.pdf}
+
+\includepdf[pages=1]{FORMULARIO INTEGRALI.pdf}
 
 \end{document}
 
