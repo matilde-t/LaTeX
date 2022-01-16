@@ -712,6 +712,58 @@ $\Rightarrow \sqrt {n}(g(X_n)-g(\theta))\overset{L}{\rightarrow}\mathcal{N}(0,(g
 
 \textbf{Minimalità} $(\frac{f(\boldsymbol{x}|\theta)}{f(\boldsymbol{y}|\theta)}=C_{x,y}\Leftrightarrow T(\boldsymbol{x})=T(\boldsymbol{y}))\Rightarrow T$ è \textit{sufficiente} e \textit{minimale}
 
+\textbf{Metodo dei momenti} $\frac{\sum_{i=1}^nX_i^k}{n}\overset{\mathbb{P}}{\rightarrow}\mathbb{E}[X^k]$
+
+\textbf{Verosimiglianza} $L(\theta|\boldsymbol{x})=f(\boldsymbol{x}|\theta)$
+
+\begin{itemize}
+
+\item Non richiede dati i.i.d., indipendenti o identicamente distribuiti ma solo la congiunta
+
+\item $L(\theta|\boldsymbol{x})$ non integra a 1 come $f(\boldsymbol{x}|\theta)$
+
+\item Indica quanto è verosimile che $\theta$ abbia generato $\boldsymbol{X}$ (N.B. NON è una variabile aleatoria!)
+
+\item Si ragiona in termini di rapporto di verosimiglianze
+
+\end{itemize}
+
+\textbf{Massima verosimiglianza} $\hat\theta(\boldsymbol{x})$ valore del parametro per cui $L(\theta|\boldsymbol{X})$ raggiunge il massimo come funzione di $\theta$ con $\boldsymbol{x}$ fissato; se la funzione è differenziabile i candidati sono $(\theta_1,\dots,\theta_k)$ che soddisfano $\frac{\partial L(\theta|\boldsymbol{x})}{\partial\theta_i}=0,\,i=1,\dots,k$
+
+\textbf{Distorsione} $\text{Bias}=\mathbb{E}[W(\boldsymbol{X})]-\theta$ N.B. il MSE di uno stimatore distorto potrebbe essere minore di uno non distorto
+
+\textbf{Errore quadratico medio (MSE)} $\mathbb{E}[(W(\boldsymbol{X})-\theta)^2]=\text{Var}(W(\boldsymbol{X}))+\text{Bias}^2$
+
+\textbf{Best unbiased estimator} $\mathbb{E}[W^*(\boldsymbol{X})]=\theta$ e per ogni altro stimatore non distorto $W(\boldsymbol{X})$ di $\theta$ si ha $\text{Var}(W^*(\boldsymbol{X}))\leq \text{Var}(W(\boldsymbol{X}))$
+
+\pagebreak
+
+\textbf{Teorema di Cramer Rao} se si può scambiare integrazione e derivazione (sempre possibile se l'insieme 
+
+$S=\{\boldsymbol{x}:f(\boldsymbol{x})>0\}$ non dipende da $\theta$, vero sempre tranne che per l'uniforme) e $\text{Var}(W(\boldsymbol{X}))<\infty$ allora $\text{Var}(W(\boldsymbol{X}))\geq \frac{(\frac{d}{d\theta}\mathbb{E}[W(\boldsymbol{X})])^2}{\mathbb{E}[(\frac{d}{d\theta}\log f(\boldsymbol{X}|\theta))^2]}$
+
+\begin{itemize}
+
+\item Numeratore solo distorsione, denominatore solo densità
+
+\item Il denominatore si chiama \textit{informazione di Fisher} $\mathcal{I}_n$
+
+\item Caso $\theta$ multidimensionale e stimatore non distorto: $\text{Var}(W(\boldsymbol{X}))\geq \mathcal{I}_n^{-1}$ con 
+
+$[\mathcal{I}_n]_{ij}=\mathbb{E}[\frac{d}{d\theta_i}\log f(\boldsymbol{X}|\theta)\frac{d}{d\theta_j}\log f(\boldsymbol{X}|\theta)]$
+
+\item Per $n$ abbastanza grande, $\hat {\boldsymbol{\theta}}_n\sim \mathcal{N}(\boldsymbol{\theta},\mathcal{I}_n^{-1})$ , cioè asintoticamente non distorto e a varianza minima (\textit{efficiente})
+
+\item Se le componenti del campione sono i.i.d. $\text{Var}(W(\boldsymbol{X}))\geq \frac{(\frac{d}{d\theta}\mathbb{E}[W(\boldsymbol{X})])^2}{n\mathbb{E}[(\frac{d}{d\theta}\log f(X|\theta))^2]}$ con $f(X|\theta)$  legge della generica componente di $\boldsymbol{X}$
+
+\item Se si aggiunge anche $\frac{d}{d\theta}\mathbb{E}[\frac{d}{d\theta}\log f(\boldsymbol{X}|\theta)]=\int\frac{d}{d\theta}(\frac{d}{d\theta}(\log f(\boldsymbol{X}|\theta))f(\boldsymbol{X}|\theta))\,d \boldsymbol{x}$ , allora 
+
+$\mathbb{E}[(\frac{d}{d\theta}\log f(X|\theta))^2]=-\mathbb{E}[\frac{d^2}{d\theta^2}\log f(X|\theta)]$
+
+\end{itemize}
+
+\textbf{Teorema di Rao-Blackwell} Se $W$ è uno stimatore non distorto di $\theta$ e $T$ è una statistica sufficiente per $\theta$, allora se definiamo $\phi(T)=\mathbb{E}[W|T]$ come nuovo sitmatore questo sarà ancora non distorto e con varianza minore o uguale a W
+
 \includepdf[pages=-]{tavola normale.pdf}
 
 \includepdf[pages=1]{FORMULARIO INTEGRALI.pdf}
