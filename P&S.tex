@@ -760,9 +760,81 @@ $[\mathcal{I}_n]_{ij}=\mathbb{E}[\frac{d}{d\theta_i}\log f(\boldsymbol{X}|\theta
 
 $\mathbb{E}[(\frac{d}{d\theta}\log f(X|\theta))^2]=-\mathbb{E}[\frac{d^2}{d\theta^2}\log f(X|\theta)]$
 
+\item Uno stimatore non distorto raggiunge il limite di Cramer-Rao $\Leftrightarrow a(\theta)(W(\boldsymbol{x})-\theta)=\frac{\partial}{\partial\theta}\log L(\theta|\boldsymbol{x})$
+
+\item Se $W(\boldsymbol{X})$ è un \textit{miglior stimatore non distorto} (cioè non distorto e raggiunge Cramer-Rao), allora è unico
+
 \end{itemize}
 
 \textbf{Teorema di Rao-Blackwell} Se $W$ è uno stimatore non distorto di $\theta$ e $T$ è una statistica sufficiente per $\theta$, allora se definiamo $\phi(T)=\mathbb{E}[W|T]$ come nuovo sitmatore questo sarà ancora non distorto e con varianza minore o uguale a W
+
+\textbf{Teoria dei test}
+
+\begin {wraptable}{l}{10cm}
+
+\begin{tabular}{c|c|c}
+
+ & Accetto $H_0 $ & Accetto $H_1$\\
+
+\hline
+
+$H_0$ vera & \checkmark & Errore di prima specie\\
+
+$H_1$ vera & Errore di seconda specie & \checkmark
+
+\end{tabular}
+
+\end {wraptable} 
+
+\textbf{Funzione potenza} $\beta(\theta)=\mathbb{P}(\boldsymbol{X}\in R;\theta)$ probabilità di appartenere alla regione di rifiuto per un dato $\theta$
+
+\textbf{Livello} un test si dice di \textit{livello} $\alpha$ se $\sup_ {\theta\in\Theta_0}\beta(\theta)\leq\alpha$, $\alpha$ \textit{livello di significatività} 
+
+\textbf{Quantità pivotale} Variabile aleatoria $Q(\boldsymbol{X},\theta)$ la cui distribuzione non dipende da $\theta$
+
+\textbf{Lemma di Neyman-Pearson} Considerando il test d'ipotesi $H_0:\theta = \theta_0$ , $H_1:\theta = \theta_1$ , allora se $\left\{ \begin{array}{ll} 
+\boldsymbol{x}\in R(\boldsymbol{x}) & \text{se } f(\boldsymbol{x}|\theta_1)>kf(\boldsymbol{x}|\theta_0)\\
+\boldsymbol{x}\in R^C(\boldsymbol{x}) & \text{se } f(\boldsymbol{x}|\theta_1)<kf(\boldsymbol{x}|\theta_0) \end{array}\right.$ 
+con $k>0$ e $\alpha =\mathbb{P}(\boldsymbol{X}\in R(\boldsymbol{x});\theta_0)$ , ogni test che soddisfa queste condizioni è \textit{uniformemente più potente (UMP)} nella classe dei test di livello $\alpha$, cioè $\beta(\theta)\geq\beta'(\theta)\,\forall\theta\in\Theta_0^C$ e test con funzione di potenza $\beta'(\theta)$
+
+\textbf{Teorema di Carlin-Rubin} Considerando il test d'ipotesi $H_0:\theta\leq\theta_0$ , $H_1: \theta>\theta_0$. Supponendo che:
+
+\begin{itemize}
+
+\item esiste una statistica sufficiente $T$ per $\theta$
+
+\item la famiglia delle leggi di $T$ $\{g(t|\theta):\theta\in\Theta\}$ soddisfa la condizione che $\frac{g(t|\theta_2)}{g(t|\theta_1)}$ è monotona in $t$ $\forall\theta_2>\theta_1$ , $\forall t\in \{t:g(t|\theta_2)>0\vee g(t|\theta_1)$>0\}
+
+\end{itemize}
+
+Allora se un test rifiuta $H_0\Leftrightarrow T>t_0$ con $\mathbb{P}_{\theta_0}(T>t_0)$ , è UMP di classe $\alpha$
+
+\textbf{Rapporto di verosimiglianza (LR)} $\lambda(\boldsymbol{x})=\frac{\underset{\theta\in\Theta_0}{\sup}L(\theta|\boldsymbol{x})}{\underset{\theta\in\Theta}{\sup}L(\theta|\boldsymbol{x})}$ (N.B. $\Theta$ e non $\Theta_0^C$ al denominatore!)
+
+Se esiste una statistica sufficiente $T(\boldsymbol{X})$ per $\theta$ e $\lambda^*(t)$ , $\lambda(\boldsymbol{x})$ sono i LR per $T(\boldsymbol{X})$ e $\boldsymbol{X}$ , allora $\lambda^*(T(\boldsymbol{x}))=\lambda(\boldsymbol{x})$
+
+\textbf{Test del rapporto di veromiglianza} La regione di rifiuto è $R(\boldsymbol{x})=\{\boldsymbol{x}:\lambda(\boldsymbol{x})\leq c\}$ con $0\leq c\leq 1$ e questi test sono UMP sotto le ipotesi precedenti
+
+\textbf{p-value} Se $W(\boldsymbol{X})$ è una statistica test tale che valori elevati della statistica danno evidenza su $H_1$ vera, allora $p(\boldsymbol{x})=\underset{\theta\in\Theta_0}{\sup}\mathbb{P}(W(\boldsymbol{X})\geq W(\boldsymbol{x}))$ è un valido p-value
+
+\textbf{Intervalli di confidenza} Una \textit{stima intervallare} per un parametro $\theta$ \underline{continuo} è una coppia di funzioni $L(\boldsymbol{X})$ e $U(\boldsymbol{X})$ tali che $L(\boldsymbol{X})\leq\theta\leq U(\boldsymbol{X})$. L'intervallo random $[L(\boldsymbol{X}),U(\boldsymbol{X})]$ è detto \textit{stimatore intervallare}
+
+\textbf{Copertura} Probabilità che l'intervallo copra il valore vero $\mathbb{P}(\theta\in[L(\boldsymbol{X}),U(\boldsymbol{X})];\theta)\equiv \mathbb{P}(L(\boldsymbol{X})\leq\theta;\theta)\cap\mathbb{P}(U(\boldsymbol{X})\geq\theta;\theta)$
+
+\textbf{Confidenza} $\inf$ della copertura $\underset{\theta\in\Theta}{\inf}\mathbb{P}(\theta\in[L(\boldsymbol{X}),U(\boldsymbol{X})])$ (N.B. copertura = probabilità per un dato $\theta$, confidenza = minima copertura al variare di $\theta$)
+
+\textbf{Invertire i test} Per ogni $\theta_i\in\Theta$ , $A_{\theta_0}$ \textit{regione di accettazione} di un test puntuale con $H_0:\theta=\theta_0$ di livello $\alpha$. Definito $\forall \boldsymbol{x}\in \mathcal{X}$ il set $C_{\boldsymbol{x}}(\theta_0)=\{\theta_0:\boldsymbol{x}\in A_{\theta_0}(\boldsymbol{x})\}$ allora $C_{\boldsymbol{x}}(\theta_0)$ è un \textit{set di confidenza} $1-\alpha$
+
+Inoltre se $C_{\boldsymbol{x}}(\theta_0)$ è un \textit{test di confidenza} $1-\alpha$ allora $\forall\theta_0\in\Theta$ definito $A_{\theta_0}(\boldsymbol{x})=\{\boldsymbol{x}:\theta_0\in C_{\boldsymbol{x}}(\theta_0)\}$ esso è una \textit{regione di accetazione} di livello $\alpha$ per un test $H_0:\theta=\theta_0$
+
+\textbf{Lunghezza minima dell'intervallo} Se $f(x)$ è una densità \textit{unimodale}, l'intervallo $[a,b]$ che soddisfa 
+
+$\left. \begin{array}{ll} 
+(1) & \int_a^bf(x)\,dx=1-\alpha\\
+(2) & f(a)=f(b)\\
+(3) & a\leq x^*\leq b \text{, dove }x^* \text{ è la moda}	
+\end{array}\right]
+\Rightarrow [a,b]$ è l'intervallo più corto che soddisfa $(1)$
 
 \includepdf[pages=-]{tavola normale.pdf}
 
