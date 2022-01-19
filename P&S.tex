@@ -1,4 +1,4 @@
-\documentclass[openany]{book} % oppure \openany in mezzo al libro
+  \documentclass[openany]{book} % oppure \openany in mezzo al libro
 \usepackage[utf8]{inputenc}
 \usepackage[italian]{babel}
 \usepackage[T1]{fontenc}
@@ -835,6 +835,32 @@ $\left. \begin{array}{ll}
 (3) & a\leq x^*\leq b \text{, dove }x^* \text{ è la moda}	
 \end{array}\right]
 \Rightarrow [a,b]$ è l'intervallo più corto che soddisfa $(1)$
+
+\textbf{Regressione: ipotesi di Gauss} 
+
+\begin{itemize}
+
+\item $\mathbb{E}[\epsilon_i]=0$
+
+\item $\text{Var}(\epsilon_i)=\sigma^2$ \textit{omoschedastiche}
+
+\item $\text{Cov}(\epsilon_i,\epsilon_j)=0$ se $i\neq j$
+
+\end{itemize}
+
+Inoltre $\epsilon$ normale e indipendenti da $x$
+
+$\left(\begin{array}{c}\hat\alpha \\ \hat\beta\end{array}\right)\sim \mathcal{N}\left(\left(\begin{array}{c} \alpha \\ \beta \end{array}\right),\left(\begin{array}{cc} \sigma^2 \frac{\sum_{i=1}^nx_i^2}{nSS_x} & -\overline x \frac{\sigma^2}{SS_x} \\ -\overline x \frac{\sigma^2}{SS_x} & \frac{\sigma^2}{SS_x} \end{array}\right)\right)$ con $\overline x = \frac{\sum_{i=1}^nx_i}{n}$ , $SS_x = \sum_{i=1}^n(x_i-\overline x)^2 $
+
+\textbf{Indice} $R^2=1-\frac{SS_r}{SS_y}=\frac{SS_{reg}}{SS_y}$  , 0 = modello inutile , 1 = modello "perfetto"
+
+con $SS_y = \sum_{i=1}^n(y_i-\overline y)^2\,,\,SS_r = \sum_{i=1}^n(y_i-\hat y_i)^2\,,\,SS_{reg} = \sum_{i=1}^n(\hat y_i-\overline y)^2\,,\,SS_y=SS_r+SS_{reg}$
+
+\textbf{Regressione multivariata} $y_i=\sum_{i=1}^p\beta_i x_{i,p}+\epsilon_i = \boldsymbol{x}_i \boldsymbol{\beta}+\epsilon_i$ con $\boldsymbol{x}_i=(1,x_{i,2},\dots,x_{i,p})$ e $\boldsymbol{\beta}=(\beta_1,\dots,\beta_p)'$ , $n\gg p$ , sempre con le ipotesi di Gauss (N.B. non è più una retta di regressione ma un iperpiano)
+
+$\boldsymbol{X}$ matrice $n\times p$ con riga $i$-esima pari a $\boldsymbol{x}_i$ , $\boldsymbol{y}=(y_1,\dots,y_n)'$ e $\boldsymbol{\epsilon}=(\epsilon_1,\dots,\epsilon_n)'$
+
+$\boldsymbol{y}=\boldsymbol{X\beta}+\boldsymbol{\epsilon}$ \quad $\boldsymbol{y}\sim \mathcal{N}(\boldsymbol{X\beta},\sigma^2 \boldsymbol{I}_n)$ \quad $\hat {\boldsymbol{\beta}}=(\boldsymbol{X}'\boldsymbol{X})^{-1}\boldsymbol{X}'\boldsymbol{y}$ \quad $\hat\sigma^2=\frac{(\boldsymbol{y}-\boldsymbol{X}\hat {\boldsymbol{\beta}})'(\boldsymbol{y}-\boldsymbol{X}\hat {\boldsymbol{\beta}})}{n}=\frac{\sum_{i=1}^n(y_i-\boldsymbol{x}_i\hat {\boldsymbol{\beta}})^2}{n}$
 
 \includepdf[pages=-]{tavola normale.pdf}
 
