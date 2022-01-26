@@ -1,4 +1,4 @@
-  \documentclass[openany]{book} % oppure \openany in mezzo al libro
+\documentclass[openany]{book} % oppure \openany in mezzo al libro
 \usepackage[utf8]{inputenc}
 \usepackage[italian]{babel}
 \usepackage[T1]{fontenc}
@@ -179,7 +179,9 @@ $p_{N+1}=1-\sum_{i=1}^Np_i$ ; la marginale della multinomiale è una binomiale
 
 \underline{Funzione caratteristica} $\Phi_X(t)= \frac{pe^{it}}{1-e^{it}(1-p)}$
 
-\underline{Commenti} Numero di fallimenti che precedono il primo successo; la discretizzazione di una esponenziale è una geometrica
+\underline{Commenti} Numero di tentativi per il primo successo N.B. la Siri la definisce diversamente! 
+
+La discretizzazione di una esponenziale è una geometrica
 \\
 
 \textbf{Ipergeometrica} $(n,h,r)$
@@ -203,7 +205,7 @@ $p_{N+1}=1-\sum_{i=1}^Np_i$ ; la marginale della multinomiale è una binomiale
 
 \underline{Funzione caratteristica} $\Phi_X(t)=e^{\lambda(e^{it}-1)}$
 
-\underline{Commenti} Descrive il numero di eventi in un intervallo di tempo
+\underline{Commenti} Numero di eventi in un intervallo di tempo
 \\
 
 \textbf{Uniforme} $(a,b)$
@@ -243,7 +245,7 @@ $p_{N+1}=1-\sum_{i=1}^Np_i$ ; la marginale della multinomiale è una binomiale
 \underline{Commenti} $\chi^2=\sum_{i=1}^k X_i^2\,,\,X_i\sim \mathcal{N}(0,1)\,iid$  e $k$ è detto \textit{numero di gradi di libertà}
 \\
 
-\textbf{Esponenziale} $(\lambda)$
+\textbf{Esponenziale} $(\lambda)$ (Statistica: $\frac{1}{\lambda})$
 
 \underline{Densità} $f_X(x) = \lambda e^{-\lambda x}\boldsymbol{1}_{(0,+\infty)}(x)$
 
@@ -255,12 +257,10 @@ $p_{N+1}=1-\sum_{i=1}^Np_i$ ; la marginale della multinomiale è una binomiale
 
 \underline{Funzione caratteristica} $\Phi_X(t)=\frac{\lambda}{\lambda-it}$
 
-\underline{Commenti} Descrive il tempo di attesa tra due eventi successivi
-
-La discretizzazione di una esponenziale è una geometrica
+\underline{Commenti} Tempo di attesa tra due eventi successivi; la discretizzazione di una esponenziale è una geometrica
 \\
 
-\textbf{Gamma} $(\alpha, \lambda)$
+\textbf{Gamma} $(\alpha, \lambda)$ (Statistica: $\beta=\frac{1}{\lambda}$)
 
 \underline{Densità} $f_X(x) = \frac{\lambda^\alpha}{\Gamma(\alpha)}x^{\alpha-1}e^{-\lambda x}\boldsymbol{1}_{(0,+\infty)}(x)$,
 
@@ -270,11 +270,15 @@ con $\Gamma(\alpha)=\int_0^{+\infty} y^{\alpha-1}e^{-y}\,dy$
 
 \underline{Varianza} $\frac{\alpha}{\lambda^2}$
 
-\underline{Funzione caratteristica} $\Phi_X(t)=\left(1-\frac{it}{\lambda}\right)^{-k}$
+\underline{Funzione caratteristica} $\Phi_X(t)=\left(1-\frac{it}{\lambda}\right)^{-\alpha}$
 
 \underline{Commenti} Se $\alpha$ è intero si parla di Erlang 
 
-$cG(\alpha, \lambda)\sim G(\alpha,\frac{\lambda}{c})$ , $\alpha,\lambda,c>0$
+$cG(\alpha, \lambda)\sim G(\alpha,\frac{\lambda}{c})$ , $\alpha,\lambda,c>0$ N.B. $\lambda=\frac{1}{\beta}$
+
+\underline{Funzione di ripartizione della Erlang} 
+
+$F_X(x)=1-\sum_{k=0}^{n-1}\frac{(\lambda t)^k}{k!}e^{-\lambda t} \quad , \quad t\in(0,+\infty)$
 
 \end{multicols}
 
@@ -295,6 +299,8 @@ $\Gamma(n,\lambda),\,n\in \mathbb{N},$ è una \textit{distribuzione di Erlang}, 
 $X_1,\dots,X_n$ variabili aleatorie indipendenti con distribuzione $\Gamma(\alpha_i,\lambda)\Rightarrow \sum_{i=1}^nX_i\sim\Gamma(\alpha_1+\dots+\alpha_n,\lambda)$
 
 \textbf{Trasformazione di variabili e vettori aleatori}
+
+$\mathbb{P}(\max(X_1,\dots,X_n)\leq t)=\prod_{i=1}^nF_{X_i}(t) \quad \mathbb{P}(\min(X_1,\dots,X_n)\leq t)=1-\prod_{i=1}^n(1-F_{X_i}(t))$
 
 \begin{itemize}
 
@@ -320,7 +326,7 @@ la relazione è valida anche per partizioni in cui $g$ soddisfa le ipotesi
 
 $f_{(S,T)}(s,t)=f_{(X,Y)}(g^{-1}(s,t))\left|\text{det} J_{g^{-1}}(s,t)\right|\boldsymbol{1}_{g(A)}(s,t)$
 
-N.B. $\text{det}J_{g^{-1}}(s,t)=\frac{1}{\text{det}J_g(g^{-1}(s,t))}$
+N.B. $\text{det}J_{g^{-1}}(s,t)=\frac{1}{\text{det}J_g(g^{-1}(s,t))}$ , $J_g=\left(\begin{array}{cc}\frac{\partial g_1}{\partial x} & \frac{\partial g_1}{\partial y} \\ \frac{\partial g_2}{\partial x} & \frac{\partial g_2}{\partial y} \end{array}\right)$
 
 \end{itemize}
 
@@ -338,7 +344,7 @@ $\Phi_{\underline{X}}(t)=\mathbb{E}\left[e^{i \underline{t}^T \underline{X}}\rig
 
 \item $\Phi_{-\underline{X}}(\underline{t}) = \overline{\Phi_{\underline{X}}(\underline{t})}$\quad$ \Rightarrow$\quad se $\underline{X}$ è simmetrica, cioè $\underline{X}\sim-\underline{X}$ , \quad $\Phi_{\underline{X}}(\underline{t})\in \mathbb{R}$
 
-\item $\underline{X}\ind \underline{Y}$ \quad $\Rightarrow$ \quad $\Phi_{\underline{X}+\underline{Y}}(\underline{t})=\Phi_{\underline{X}}(\underline{t})\cdot\Phi_{\underline{X}}(\underline{t})$
+\item $\underline{X}\ind \underline{Y}$ \quad $\Rightarrow$ \quad $\Phi_{\underline{X}+\underline{Y}}(\underline{t})=\Phi_{\underline{X}}(\underline{t})\cdot\Phi_{\underline{Y}}(\underline{t})$
 
 \item $\Phi_{A\underline{X}+\underline{b}}(\underline{t})= e^{i \underline{t}^T \underline{b}}\,\Phi_{\underline{X}}(A^T\underline{t})$
 
@@ -419,8 +425,6 @@ $X_n\overset {\mathbb{P}}\rightarrow X$
 \textbf{Disuguaglianza di Markov} $X$ v.a., $X\in L^1(\Omega,\mathcal{F},\mathbb{P})$ e $X\geq 0$ q.o., allora $\forall\epsilon>0 \quad \mathbb{P}(X>\epsilon)\leq \frac{\mathbb{E}[X]}{\epsilon}$
 
 \textbf{Disuguaglianza di Cebicev} $X$ v.a., $X\in L^2(\Omega,\mathcal{F},\mathbb{P})$, allora $\forall \epsilon>0 \quad \mathbb{P}(|X-\mathbb{E}[X]|>\epsilon)\leq \frac{\text{Var}(X)}{\epsilon^2}$
-
-\pagebreak
 
 \textbf{Convergenza in norma $L^p$} $X_N,\,X\in L^p\quad ||X_n-X||_{L^p}\underset {n \rightarrow\infty}\rightarrow 0$, ovvero $\mathbb{E}[|X_n-X|^p]\underset {n \rightarrow\infty}\rightarrow 0$ 
 
@@ -736,8 +740,6 @@ $\Rightarrow \sqrt {n}(g(X_n)-g(\theta))\overset{L}{\rightarrow}\mathcal{N}(0,(g
 
 \textbf{Best unbiased estimator} $\mathbb{E}[W^*(\boldsymbol{X})]=\theta$ e per ogni altro stimatore non distorto $W(\boldsymbol{X})$ di $\theta$ si ha $\text{Var}(W^*(\boldsymbol{X}))\leq \text{Var}(W(\boldsymbol{X}))$
 
-\pagebreak
-
 \textbf{Teorema di Cramer Rao} se si può scambiare integrazione e derivazione (sempre possibile se l'insieme 
 
 $S=\{\boldsymbol{x}:f(\boldsymbol{x})>0\}$ non dipende da $\theta$, vero sempre tranne che per l'uniforme) e $\text{Var}(W(\boldsymbol{X}))<\infty$ allora $\text{Var}(W(\boldsymbol{X}))\geq \frac{(\frac{d}{d\theta}\mathbb{E}[W(\boldsymbol{X})])^2}{\mathbb{E}[(\frac{d}{d\theta}\log f(\boldsymbol{X}|\theta))^2]}$
@@ -852,6 +854,10 @@ Inoltre $\epsilon$ normale e indipendenti da $x$
 
 $\left(\begin{array}{c}\hat\alpha \\ \hat\beta\end{array}\right)\sim \mathcal{N}\left(\left(\begin{array}{c} \alpha \\ \beta \end{array}\right),\left(\begin{array}{cc} \sigma^2 \frac{\sum_{i=1}^nx_i^2}{nSS_x} & -\overline x \frac{\sigma^2}{SS_x} \\ -\overline x \frac{\sigma^2}{SS_x} & \frac{\sigma^2}{SS_x} \end{array}\right)\right)$ con $\overline x = \frac{\sum_{i=1}^nx_i}{n}$ , $SS_x = \sum_{i=1}^n(x_i-\overline x)^2 $
 
+$\hat\alpha=\overline y-\hat\beta\overline x$ \quad $\hat\beta=\frac{SS_{xy}}{SS_x}$ \quad $\hat\sigma^2=\frac{\sum_{i=1}^n(y_i-\hat\alpha-\hat\beta x_i)^2}{n}$ oppure $\frac{\sum_{i=1}^n(y_i-\hat\alpha-\hat\beta x_i)^2}{n}$ che è non distorto
+
+\textbf{Stimatori di massima verosimiglianza} $\hat\alpha =\overline y-\hat\beta\overline x \quad \hat\beta=\frac{SS_{xy}}{SS_x}$
+
 \textbf{Indice} $R^2=1-\frac{SS_r}{SS_y}=\frac{SS_{reg}}{SS_y}$  , 0 = modello inutile , 1 = modello "perfetto"
 
 con $SS_y = \sum_{i=1}^n(y_i-\overline y)^2\,,\,SS_r = \sum_{i=1}^n(y_i-\hat y_i)^2\,,\,SS_{reg} = \sum_{i=1}^n(\hat y_i-\overline y)^2\,,\,SS_y=SS_r+SS_{reg}$
@@ -864,7 +870,11 @@ $\boldsymbol{y}=\boldsymbol{X\beta}+\boldsymbol{\epsilon}$ \quad $\boldsymbol{y}
 
 \includepdf[pages=-]{tavola normale.pdf}
 
+\includepdf[pages=3-6]{Tavole statistiche.pdf}
+
 \includepdf[pages=1]{FORMULARIO INTEGRALI.pdf}
+
+\includepdf[pages=1]{Sviluppi Taylor.pdf}
 
 \end{document}
 
