@@ -5,9 +5,10 @@ A collection of LaTeX projects, mostly formularies for my courses in *Mathematic
 Completed:
 - Meccanica Razionale (Analytical Mechanics)
 - Equazioni della Fisica Matematica (Mathematical Physics)
+- Probabilità e Statistica (Probability and Statistics)
 
 Working on:
-- Probabilità e Statistica (Probability and Statistics)
+- Fisica 2 (Physics 2)
 
 Dropped:
 - Metodi Numerici (Numerical Methods)
