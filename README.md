@@ -8,7 +8,6 @@ Completed:
 - Probabilità e Statistica (Probability and Statistics)
 
 Working on:
-- Fisica 2 (Physics 2)
 
 Dropped:
 - Metodi Numerici (Numerical Methods)
