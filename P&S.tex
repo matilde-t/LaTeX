@@ -53,7 +53,7 @@
 
 $e^{ix} = \cos(x)+i\sin(x) \quad e^x = \underset{n \rightarrow\infty}{\text{lim}}\left(1+\frac{x}{n}\right)^n \quad e^x=\sum_{n=0}^\infty \frac{x^n}{n!}$
 
-\textbf{Disposizioni con ripetizione} $D^R_{n.k}=n^k$
+\textbf{Disposizioni con ripetizione} $D^R_{n,k}=n^k$
 
 \textbf{Disposizioni semplici} $D_{n,k}=\frac{n!}{(n-k)!}$
 
@@ -115,7 +115,7 @@ $f_Z(z) = \int_{-\infty}^{+\infty}f_X(z-y)f_Y(y)\,dy = \int_{-\infty}^{+\infty}f
 
 \begin{multicols}{2}
 
-	\textbf{Bernoulli} $(p)$
+	\textbf{Bernoulli} $(p)$ \quad $B(p)$
 
 	\underline{Densità} $p_X(k) = \begin {cases}1-p & k =0\\ p & k=1\end {cases}$
 
@@ -130,7 +130,7 @@ $f_Z(z) = \int_{-\infty}^{+\infty}f_X(z-y)f_Y(y)\,dy = \int_{-\infty}^{+\infty}f
 	\underline{Commenti} Fallimento e successo
 	\\
 
-	\textbf{Binomiale} $(n,p)$
+	\textbf{Binomiale} $(n,p)$ \quad $B(n,p)$
 
 	\underline{Densità} $p_X(k) = \binom {n}{k}p^k(1-p)^{n-k},\,k \in \{0,\dots,n\}$
 
@@ -195,7 +195,7 @@ $f_Z(z) = \int_{-\infty}^{+\infty}f_X(z-y)f_Y(y)\,dy = \int_{-\infty}^{+\infty}f
 	\underline{Commenti} Conta per $r$ elementi distinti estratti a caso senza reinserimento da un insieme con cardinalità $n$ quanti sono nel sottoinsieme di cardinalità $h$
 	\\
 
-	\textbf{Poisson} $(\lambda)$
+	\textbf{Poisson} $(\lambda)$ \quad $P(\lambda)$
 
 	\underline{Densità} $p_X(k) = e^{-\lambda}\frac{\lambda^k}{k!},\,k=0,1,\dots$
 
@@ -208,7 +208,7 @@ $f_Z(z) = \int_{-\infty}^{+\infty}f_X(z-y)f_Y(y)\,dy = \int_{-\infty}^{+\infty}f
 	\underline{Commenti} Numero di eventi in un intervallo di tempo
 	\\
 
-	\textbf{Uniforme} $(a,b)$
+	\textbf{Uniforme} $(a,b)$ \quad $U(a,b)$
 
 	\underline{Densità} $f_X(x) = \frac{1}{b-a}\boldsymbol{1}_{(a,b)}(x)$
 
@@ -221,7 +221,7 @@ $f_Z(z) = \int_{-\infty}^{+\infty}f_X(z-y)f_Y(y)\,dy = \int_{-\infty}^{+\infty}f
 	\underline{Funzione caratteristica} $\Phi_X(t)=\frac{e^{ibt}-e^{iat}}{ibt-iat}$
 	\\
 
-	\textbf{Normale / Gaussiana} $(\mu,\sigma^2)$
+	\textbf{Normale / Gaussiana} $(\mu,\sigma^2)$ \quad $\mathcal{N}(\mu,\sigma^2)$
 
 	\underline{Densità} $f_X(x) = \frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}$
 
@@ -232,7 +232,7 @@ $f_Z(z) = \int_{-\infty}^{+\infty}f_X(z-y)f_Y(y)\,dy = \int_{-\infty}^{+\infty}f
 	\underline{Funzione caratteristica} $\Phi_X(t)=e^{\mu it-\frac{\sigma^2t^2}{2}}$
 	\\
 
-	\textbf{Chi quadro} $(k)$
+	\textbf{Chi quadro} $(k)$ \quad $\chi^2(k)$
 
 	\underline{Densità} $f_X(x) = \frac{1}{2^{\frac{k}{2}}\Gamma(\frac{k}{2})}x^{\frac{k}{2}-1}e^{-\frac{x}{2}}\boldsymbol{1}_{(0,+\infty)}(x)$, $k\in \mathbb{N}^+$
 
@@ -245,7 +245,7 @@ $f_Z(z) = \int_{-\infty}^{+\infty}f_X(z-y)f_Y(y)\,dy = \int_{-\infty}^{+\infty}f
 	\underline{Commenti} $\chi^2=\sum_{i=1}^k X_i^2\,,\,X_i\sim \mathcal{N}(0,1)\,iid$  e $k$ è detto \textit{numero di gradi di libertà}
 	\\
 
-	\textbf{Esponenziale} $(\lambda)$ (Statistica: $\frac{1}{\lambda})$
+	\textbf{Esponenziale} $(\lambda)$ (Statistica: $\frac{1}{\lambda}$) 
 
 	\underline{Densità} $f_X(x) = \lambda e^{-\lambda x}\boldsymbol{1}_{(0,+\infty)}(x)$
 
@@ -281,6 +281,8 @@ $f_Z(z) = \int_{-\infty}^{+\infty}f_X(z-y)f_Y(y)\,dy = \int_{-\infty}^{+\infty}f
 	$F_X(x)=1-\sum_{k=0}^{n-1}\frac{(\lambda t)^k}{k!}e^{-\lambda t} \quad , \quad t\in(0,+\infty)$
 
 \end{multicols}
+
+$\mathbb{P}(\max(X_1,\dots,X_n)\leq t) = \prod_{i=1}^nF_X$
 
 \textbf{Proprietà funzione $\Gamma(\alpha)$ di Eulero}
 
