@@ -115,7 +115,7 @@ $f_Z(z) = \int_{-\infty}^{+\infty}f_X(z-y)f_Y(y)\,dy = \int_{-\infty}^{+\infty}f
 
 \begin{multicols}{2}
 
-	\textbf{Bernoulli} $(p)$ \quad $B(p)$
+	\textbf{Bernoulli} $(p)$ 
 
 	\underline{Densità} $p_X(k) = \begin {cases}1-p & k =0\\ p & k=1\end {cases}$
 
@@ -130,7 +130,7 @@ $f_Z(z) = \int_{-\infty}^{+\infty}f_X(z-y)f_Y(y)\,dy = \int_{-\infty}^{+\infty}f
 	\underline{Commenti} Fallimento e successo
 	\\
 
-	\textbf{Binomiale} $(n,p)$ \quad $B(n,p)$
+	\textbf{Binomiale} $(n,p)$ 
 
 	\underline{Densità} $p_X(k) = \binom {n}{k}p^k(1-p)^{n-k},\,k \in \{0,\dots,n\}$
 
@@ -195,7 +195,7 @@ $f_Z(z) = \int_{-\infty}^{+\infty}f_X(z-y)f_Y(y)\,dy = \int_{-\infty}^{+\infty}f
 	\underline{Commenti} Conta per $r$ elementi distinti estratti a caso senza reinserimento da un insieme con cardinalità $n$ quanti sono nel sottoinsieme di cardinalità $h$
 	\\
 
-	\textbf{Poisson} $(\lambda)$ \quad $P(\lambda)$
+	\textbf{Poisson} $(\lambda)$ 
 
 	\underline{Densità} $p_X(k) = e^{-\lambda}\frac{\lambda^k}{k!},\,k=0,1,\dots$
 
@@ -208,7 +208,7 @@ $f_Z(z) = \int_{-\infty}^{+\infty}f_X(z-y)f_Y(y)\,dy = \int_{-\infty}^{+\infty}f
 	\underline{Commenti} Numero di eventi in un intervallo di tempo
 	\\
 
-	\textbf{Uniforme} $(a,b)$ \quad $U(a,b)$
+	\textbf{Uniforme} $(a,b)$
 
 	\underline{Densità} $f_X(x) = \frac{1}{b-a}\boldsymbol{1}_{(a,b)}(x)$
 
@@ -221,7 +221,7 @@ $f_Z(z) = \int_{-\infty}^{+\infty}f_X(z-y)f_Y(y)\,dy = \int_{-\infty}^{+\infty}f
 	\underline{Funzione caratteristica} $\Phi_X(t)=\frac{e^{ibt}-e^{iat}}{ibt-iat}$
 	\\
 
-	\textbf{Normale / Gaussiana} $(\mu,\sigma^2)$ \quad $\mathcal{N}(\mu,\sigma^2)$
+	\textbf{Normale / Gaussiana} $(\mu,\sigma^2)$ 
 
 	\underline{Densità} $f_X(x) = \frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}$
 
@@ -232,7 +232,7 @@ $f_Z(z) = \int_{-\infty}^{+\infty}f_X(z-y)f_Y(y)\,dy = \int_{-\infty}^{+\infty}f
 	\underline{Funzione caratteristica} $\Phi_X(t)=e^{\mu it-\frac{\sigma^2t^2}{2}}$
 	\\
 
-	\textbf{Chi quadro} $(k)$ \quad $\chi^2(k)$
+	\textbf{Chi quadro} $(k)$ 
 
 	\underline{Densità} $f_X(x) = \frac{1}{2^{\frac{k}{2}}\Gamma(\frac{k}{2})}x^{\frac{k}{2}-1}e^{-\frac{x}{2}}\boldsymbol{1}_{(0,+\infty)}(x)$, $k\in \mathbb{N}^+$
 
@@ -282,8 +282,6 @@ $f_Z(z) = \int_{-\infty}^{+\infty}f_X(z-y)f_Y(y)\,dy = \int_{-\infty}^{+\infty}f
 
 \end{multicols}
 
-$\mathbb{P}(\max(X_1,\dots,X_n)\leq t) = \prod_{i=1}^nF_X$
-
 \textbf{Proprietà funzione $\Gamma(\alpha)$ di Eulero}
 
 $\Gamma(1)=1$ , \quad
@@ -302,7 +300,7 @@ $X_1,\dots,X_n$ variabili aleatorie indipendenti con distribuzione $\Gamma(\alph
 
 \textbf{Trasformazione di variabili e vettori aleatori}
 
-$\mathbb{P}(\max(X_1,\dots,X_n)\leq t)=\prod_{i=1}^nF_{X_i}(t) \quad \mathbb{P}(\min(X_1,\dots,X_n)\leq t)=1-\prod_{i=1}^n(1-F_{X_i}(t))$
+$\mathbb{P}(\max(X_1,\dots,X_n)\leq t)=\prod_{i=1}^nF_{X_i}(t) \quad \mathbb{P}(\min(X_1,\dots,X_n)\leq t)=1-\prod_{i=1}^n(1-F_{X_i}(t))$ \quad se $X_i$ indipendenti!
 
 \begin{itemize}
 
@@ -580,6 +578,9 @@ il limite $n \rightarrow \infty$ deve comparire solo a sinistra
 .
 
 \textbf{Standardizzazione Gaussiana} $\frac{X-\mu}{\sigma}$ , \quad$X\sim\mathcal{N}(\mu,\sigma^2)$ e $\mu = \mathbb{E}[X]$ , $\sigma^2=\text{Var}(X)$
+\\
+
+N.B. \quad $L^p \Rightarrow \mathbb{P} \Rightarrow L$ \qquad $q.o. \Rightarrow \mathbb{P} \Rightarrow L$
 
 \rule{\textwidth}{0.4pt}
 
@@ -856,7 +857,7 @@ $\left(\begin{array}{c}\hat\alpha \\ \hat\beta\end{array}\right)\sim \mathcal{N}
 
 $\hat\alpha=\overline y-\hat\beta\overline x$ \quad $\hat\beta=\frac{SS_{xy}}{SS_x}$ \quad $\hat\sigma^2=\frac{\sum_{i=1}^n(y_i-\hat\alpha-\hat\beta x_i)^2}{n}$ oppure $\frac{\sum_{i=1}^n(y_i-\hat\alpha-\hat\beta x_i)^2}{n}$ che è non distorto
 
-\textbf{Stimatori di massima verosimiglianza} $\hat\alpha =\overline y-\hat\beta\overline x \quad \hat\beta=\frac{SS_{xy}}{SS_x}$
+\textbf{Stimatori di massima verosimiglianza} $\hat\alpha =\overline y-\hat\beta\overline x \quad \hat\beta=\frac{SS_{xy}}{SS_x} = \frac{\sum_i (x_i-\overline{x})y_i}{\sum_i (x_i-\overline{x})^2}$
 
 \textbf{Indice} $R^2=1-\frac{SS_r}{SS_y}=\frac{SS_{reg}}{SS_y}$  , 0 = modello inutile , 1 = modello "perfetto"
 
@@ -866,14 +867,20 @@ con $SS_y = \sum_{i=1}^n(y_i-\overline y)^2\,,\,SS_r = \sum_{i=1}^n(y_i-\hat y_i
 
 $\boldsymbol{X}$ matrice $n\times p$ con riga $i$-esima pari a $\boldsymbol{x}_i$ , $\boldsymbol{y}=(y_1,\dots,y_n)'$ e $\boldsymbol{\epsilon}=(\epsilon_1,\dots,\epsilon_n)'$
 
-$\boldsymbol{y}=\boldsymbol{X\beta}+\boldsymbol{\epsilon}$ \quad $\boldsymbol{y}\sim \mathcal{N}(\boldsymbol{X\beta},\sigma^2 \boldsymbol{I}_n)$ \quad $\hat {\boldsymbol{\beta}}=(\boldsymbol{X}'\boldsymbol{X})^{-1}\boldsymbol{X}'\boldsymbol{y}$ \quad $\hat\sigma^2=\frac{(\boldsymbol{y}-\boldsymbol{X}\hat {\boldsymbol{\beta}})'(\boldsymbol{y}-\boldsymbol{X}\hat {\boldsymbol{\beta}})}{n}=\frac{\sum_{i=1}^n(y_i-\boldsymbol{x}_i\hat {\boldsymbol{\beta}})^2}{n}$
+\quad $\boldsymbol{y}=\boldsymbol{X\beta}+\boldsymbol{\epsilon}$ \quad $\boldsymbol{y}\sim \mathcal{N}(\boldsymbol{X\beta},\sigma^2 \boldsymbol{I}_n)$
 
-\includepdf[pages=-]{./PS_files/normale.pdf}
+\quad $\hat {\boldsymbol{\beta}}=(\boldsymbol{X}'\boldsymbol{X})^{-1}\boldsymbol{X}'\boldsymbol{y}$ \quad $\hat{\boldsymbol{\beta}}\sim\mathcal{N}(\boldsymbol{\beta},\sigma^2(\boldsymbol{X}'\boldsymbol{X})^{-1})$
 
-\includepdf[pages=3-6]{./PS_files/statistiche.pdf}
+\quad $\hat\sigma^2=\frac{(\boldsymbol{y}-\boldsymbol{X}\hat {\boldsymbol{\beta}})'(\boldsymbol{y}-\boldsymbol{X}\hat {\boldsymbol{\beta}})}{n}=\frac{\sum_{i=1}^n(y_i-\boldsymbol{x}_i\hat {\boldsymbol{\beta}})^2}{n}$
+
+\includepdf[pages=2-6]{./PS_files/statistiche.pdf}
 
 \includepdf[pages=1]{./PS_files/integrali.pdf}
 
 \includepdf[pages=1]{./PS_files/taylor.pdf}
+
+\includepdf[pages=1]{./PS_files/limiti.pdf}
+
+\includepdf[pages=-]{./PS_files/serie.pdf}
 
 \end{document}
