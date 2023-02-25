@@ -1,11 +1,14 @@
 # LaTeX
 
-A collection of LaTeX projects, mostly formularies for my courses in *Mathematics for Engineering* @ Politecnico di Torino.
+A collection of LaTeX projects
 
 Completed:
-- Meccanica Razionale (Analytical Mechanics)
-- Equazioni della Fisica Matematica (Mathematical Physics)
-- Probabilità e Statistica (Probability and Statistics)
+- PoliTO
+  - Meccanica Razionale (Analytical Mechanics)
+  - Equazioni della Fisica Matematica (Mathematical Physics)
+  - Probabilità e Statistica (Probability and Statistics)
+- TUM
+  - Visual Data Analytics
 
 Working on:
 
