@@ -1,0 +1,3 @@
+[submodule "VisualDataAnalytics"]
+	path = VisualDataAnalytics
+	url = git@github.com:matilde-t/VisualDataAnalytics.git
